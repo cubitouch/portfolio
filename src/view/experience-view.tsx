@@ -201,7 +201,9 @@ const resume = {
 };
 
 const useStyles = makeStyles({
-  root: {},
+  root: {
+    maxWidth: 800,
+  },
   headTime: {
     fontWeight: 700,
     fontFamily: "'Titillium Web', sans-serif",
@@ -226,7 +228,7 @@ const useStyles = makeStyles({
 const ExperienceView: React.FC = () => {
   const classes = useStyles();
   return (
-    <>
+    <div className={classes.root}>
       <Typography variant="h2">Experience</Typography>
       <Stepper orientation="vertical">
         {resume.experiences.map((exp, i) => (
@@ -263,7 +265,7 @@ const ExperienceView: React.FC = () => {
           </Step>
         ))}
       </Stepper>
-    </>
+    </div>
   );
 };
 

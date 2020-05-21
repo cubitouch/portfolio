@@ -4,14 +4,13 @@ import GitHubIcon from "@material-ui/icons/GitHub";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import MenuIcon from "@material-ui/icons/Menu";
 import { SpeedDialIcon } from "@material-ui/lab";
-import React, { useState, useEffect } from "react";
+import { navigate, usePath, useRoutes } from "hookrouter";
+import React, { useEffect, useState } from "react";
+import ReactGA from "react-ga";
 import "./App.css";
 import theme from "./style/theme";
 import ExperienceView from "./view/experience-view";
-import ReactGA from "react-ga";
-import { useRoutes, navigate, usePath } from "hookrouter";
-import { google } from "googleapis";
-import * as jwt from "jsonwebtoken";
+import GuidView from "./view/guid-view";
 
 const useStyles = makeStyles({
   root: {
@@ -57,8 +56,9 @@ const useStyles = makeStyles({
     flexDirection: "column",
   },
   right: {
+    display: "flex",
     "& $inset": {
-      maxWidth: 800,
+      flex: "1",
     },
     "&::-webkit-scrollbar": {
       width: "11px",
@@ -210,9 +210,9 @@ const MenuComponent: React.FC = () => {
         Experience
       </ListItem>
       {/* <ListItem button>About</ListItem> */}
-      {/* <ListItem button selected={path === "/mail"} onClick={() => navigate("/mail")}>
-        Mail tester
-      </ListItem> */}
+      <ListItem button selected={path === "/guid"} onClick={() => navigate("/guid")}>
+        Guid generator
+      </ListItem>
     </List>
   );
 };
@@ -295,7 +295,7 @@ const Router = () => {
   const routeResult = useRoutes({
     "/": () => <ExperienceView />,
     // '/about': () => <AboutView />,
-    // "/mail": () => <MailView />,
+    "/guid": () => <GuidView />,
   });
   return routeResult || <Typography variant="h2">&#129300; Oops, I can't find what you are looking for...</Typography>;
 };
