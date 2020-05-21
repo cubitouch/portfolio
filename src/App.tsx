@@ -1,31 +1,17 @@
-import {
-  Avatar,
-  Chip,
-  createMuiTheme,
-  IconButton,
-  List,
-  ListItem,
-  ListItemAvatar,
-  ListItemText,
-  ListSubheader,
-  makeStyles,
-  Step,
-  StepContent,
-  StepLabel,
-  Stepper,
-  ThemeProvider,
-  Typography,
-  useMediaQuery,
-} from "@material-ui/core";
+import { IconButton, List, ListItem, makeStyles, ThemeProvider, Typography, useMediaQuery } from "@material-ui/core";
+import CloseIcon from "@material-ui/icons/Close";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
-import { SpeedDialIcon } from "@material-ui/lab";
-import React, { useState } from "react";
-import "./App.css";
 import MenuIcon from "@material-ui/icons/Menu";
-import CloseIcon from "@material-ui/icons/Close";
+import { SpeedDialIcon } from "@material-ui/lab";
+import React, { useState, useEffect } from "react";
+import "./App.css";
 import theme from "./style/theme";
 import ExperienceView from "./view/experience-view";
+import ReactGA from "react-ga";
+import { useRoutes, navigate, usePath } from "hookrouter";
+import { google } from "googleapis";
+import * as jwt from "jsonwebtoken";
 
 const useStyles = makeStyles({
   root: {
@@ -216,12 +202,17 @@ const useStyles = makeStyles({
 
 const MenuComponent: React.FC = () => {
   const classes = useStyles();
+  const path = usePath();
+
   return (
     <List className={classes.centeredList}>
-      <ListItem button>About</ListItem>
-      <ListItem button selected>
+      <ListItem button selected={path === "/"} onClick={() => navigate("/")}>
         Experience
       </ListItem>
+      {/* <ListItem button>About</ListItem> */}
+      {/* <ListItem button selected={path === "/mail"} onClick={() => navigate("/mail")}>
+        Mail tester
+      </ListItem> */}
     </List>
   );
 };
@@ -243,6 +234,22 @@ const App: React.FC = () => {
   const classes = useStyles();
   const isDesktop = useMediaQuery("(min-width:800px)");
   const [isMenuOpen, updateIsMenuOpen] = useState(false);
+
+  const [hasGAInitialized, updateHasGAInitialized] = useState(false);
+  const path = usePath();
+  const [currentPath, updateCurrentPath] = useState("");
+  if (!hasGAInitialized) {
+    ReactGA.initialize("UA-166014611-1");
+    updateHasGAInitialized(true);
+  }
+  useEffect(() => {
+    // trigger GA if path as changed
+    if (hasGAInitialized && currentPath !== path) {
+      ReactGA.pageview(path);
+      updateCurrentPath(path);
+    }
+  });
+
   return (
     <ThemeProvider theme={theme}>
       <div className={`${classes.root} ${!isDesktop ? classes.mobile : ""}`}>
@@ -277,13 +284,20 @@ const App: React.FC = () => {
           </div>
         )}
         <div className={classes.right}>
-          <div className={classes.inset}>
-            <ExperienceView />
-          </div>
+          <div className={classes.inset}>{<Router />}</div>
         </div>
       </div>
     </ThemeProvider>
   );
+};
+
+const Router = () => {
+  const routeResult = useRoutes({
+    "/": () => <ExperienceView />,
+    // '/about': () => <AboutView />,
+    // "/mail": () => <MailView />,
+  });
+  return routeResult || <Typography variant="h2">&#129300; Oops, I can't find what you are looking for...</Typography>;
 };
 
 export default App;
