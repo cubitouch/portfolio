@@ -4,7 +4,7 @@ import GitHubIcon from "@material-ui/icons/GitHub";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import MenuIcon from "@material-ui/icons/Menu";
 import { SpeedDialIcon } from "@material-ui/lab";
-import { navigate, usePath, useRoutes } from "hookrouter";
+import { navigate, usePath, useRoutes } from "raviger";
 import React, { useEffect, useState } from "react";
 import ReactGA from "react-ga";
 import "./App.css";
@@ -210,7 +210,7 @@ const MenuComponent: React.FC = () => {
         Experience
       </ListItem>
       {/* <ListItem button>About</ListItem> */}
-      <ListItem button selected={path === "/guid"} onClick={() => navigate("/guid")}>
+      <ListItem button selected={path === "/guid" || path === "/guid/"} onClick={() => navigate("/guid")}>
         Guid generator
       </ListItem>
     </List>
@@ -292,11 +292,14 @@ const App: React.FC = () => {
 };
 
 const Router = () => {
-  const routeResult = useRoutes({
-    "/": () => <ExperienceView />,
-    // '/about': () => <AboutView />,
-    "/guid": () => <GuidView />,
-  });
+  const routeResult = useRoutes(
+    {
+      "": () => <ExperienceView />,
+      // '/about': () => <AboutView />,
+      "/guid": () => <GuidView />,
+    },
+    { matchTrailingSlash: true }
+  );
   return routeResult || <Typography variant="h2">&#129300; Oops, I can't find what you are looking for...</Typography>;
 };
 

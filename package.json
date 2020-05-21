@@ -16,8 +16,8 @@
     "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.7",
     "googleapis": "^51.0.0",
-    "hookrouter": "^1.2.3",
     "jsonwebtoken": "^8.5.1",
+    "raviger": "^1.4.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-ga": "^2.7.0",
@@ -26,14 +26,21 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "prepare": "react-snap",
-    "build": "react-scripts build && react-snap",
+    "build": "react-scripts build",
+    "prepare": "cross-env rm -rf ./build/200.html && react-snap",
+    "push": "firebase deploy",
+    "deploy": "npm run build && npm run prepare && npm run push",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "deploy": "npm run build && firebase deploy"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "reactSnap": {
+    "include": [
+      "/",
+      "/guid"
+    ]
   },
   "browserslist": {
     "production": [
@@ -49,6 +56,7 @@
   },
   "devDependencies": {
     "cross-env": "^7.0.2",
-    "react-snap": "^1.23.0"
+    "react-snap": "^1.23.0",
+    "rimraf": "^3.0.2"
   }
 }
