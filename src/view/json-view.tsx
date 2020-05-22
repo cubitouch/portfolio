@@ -1,11 +1,10 @@
-import { Box, Button, ButtonGroup, makeStyles, Typography, Snackbar, Backdrop } from "@material-ui/core";
+import { Box, Button, ButtonGroup, makeStyles, Snackbar, Typography } from "@material-ui/core";
 import AspectRatioIcon from "@material-ui/icons/AspectRatio";
-import FileCopyIcon from "@material-ui/icons/FileCopy";
+import AssignmentReturnedIcon from "@material-ui/icons/AssignmentReturned";
+import GetAppIcon from "@material-ui/icons/GetApp";
 import PhotoSizeSelectSmallIcon from "@material-ui/icons/PhotoSizeSelectSmall";
 import React, { useState } from "react";
 import MonacoEditor from "react-monaco-editor";
-import GetAppIcon from "@material-ui/icons/GetApp";
-import AssignmentReturnedIcon from "@material-ui/icons/AssignmentReturned";
 import theme from "../style/theme";
 
 const useStyles = makeStyles({
@@ -28,6 +27,7 @@ const JsonView: React.FC = () => {
   const prettify = () => {
     try {
       updateJson(JSON.stringify(JSON.parse(json), null, 2));
+      updateMessage("JSON prettified");
     } catch {
       updateMessage("Invalid format");
     }
@@ -35,6 +35,7 @@ const JsonView: React.FC = () => {
   const minify = () => {
     try {
       updateJson(JSON.stringify(JSON.parse(json)));
+      updateMessage("JSON minified");
     } catch {
       updateMessage("Invalid format");
     }
