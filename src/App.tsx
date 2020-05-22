@@ -1,4 +1,15 @@
-import { IconButton, List, ListItem, makeStyles, ThemeProvider, Typography, useMediaQuery } from "@material-ui/core";
+import {
+  IconButton,
+  List,
+  ListItem,
+  makeStyles,
+  ThemeProvider,
+  Typography,
+  useMediaQuery,
+  Link,
+  ListItemText,
+  ListItemIcon,
+} from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
@@ -10,7 +21,12 @@ import ReactGA from "react-ga";
 import "./App.css";
 import theme from "./style/theme";
 import ExperienceView from "./view/experience-view";
+import JsonView from "./view/json-view";
 import GuidView from "./view/guid-view";
+import WorkIcon from "@material-ui/icons/Work";
+import SettingsIcon from "@material-ui/icons/Settings";
+import HomeIcon from "@material-ui/icons/Home";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 
 const useStyles = makeStyles({
   root: {
@@ -28,8 +44,12 @@ const useStyles = makeStyles({
         justifyContent: "flex-end",
       },
     },
+    "& .MuiSvgIcon-root": {
+      fill: "white",
+    },
   },
   left: {
+    transition: "flex 0.3s ease-out",
     backgroundColor: theme.palette.primary.main,
     color: "white",
     flex: "2",
@@ -94,7 +114,6 @@ const useStyles = makeStyles({
     "& .MuiTypography-h2": {
       fontFamily: "'Titillium Web', sans-serif",
       fontSize: "2rem",
-      letterSPacing: 2,
       color: theme.palette.grey[800],
     },
     "& .MuiTypography-h3": {
@@ -172,7 +191,7 @@ const useStyles = makeStyles({
     "& $left": {
       flexDirection: "column",
       height: 24,
-      transition: "height 0.2s",
+      transition: "height 0.2s ease-out",
       padding: 15,
       flex: "inherit",
 
@@ -191,6 +210,7 @@ const useStyles = makeStyles({
       "&$fullHeight": {
         height: "calc(var(--vh, 1vh) * 100)",
         alignItems: "inherit",
+        paddingBottom: 0,
       },
     },
     "& $inset": { padding: "32px 16px" },
@@ -198,28 +218,51 @@ const useStyles = makeStyles({
   header: {
     display: "flex",
   },
+  backBar: {
+    width: 48,
+    height: "100vh",
+    display: "flex",
+    background: theme.palette.primary.main,
+    "& .MuiIconButton-root": { color: "white" },
+    "& .MuiLink-root": { display: "flex" },
+  },
 });
 
 const MenuComponent: React.FC = () => {
   const classes = useStyles();
   const path = usePath();
 
+  const Item = ({ route, text }: { route: string; text: string }) => (
+    <ListItem button selected={path === route || path === `${route}/`} onClick={() => navigate(route)}>
+      <ListItemText>
+        <Link
+          href={route}
+          color="inherit"
+          underline="none"
+          onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => e.preventDefault()}
+        >
+          {text}
+        </Link>
+      </ListItemText>
+    </ListItem>
+  );
   return (
     <List className={classes.centeredList}>
-      <ListItem button selected={path === "/"} onClick={() => navigate("/")}>
-        Experience
-      </ListItem>
+      <Item route="/" text="Experience" />
+      <Item route="/guid" text="GUID generator" />
+      <Item route="/json" text="JSON Parser" />
       {/* <ListItem button>About</ListItem> */}
-      <ListItem button selected={path === "/guid" || path === "/guid/"} onClick={() => navigate("/guid")}>
-        Guid generator
-      </ListItem>
     </List>
   );
 };
-const SocialComponent: React.FC = () => {
+
+interface ISocialProps {
+  display?: string;
+}
+const SocialComponent: React.FC<ISocialProps> = ({ display }) => {
   const classes = useStyles();
   return (
-    <div className={classes.social}>
+    <div className={classes.social} style={{ display: display || "flex" }}>
       <IconButton href="https://github.com/cubitouch" target="_blank">
         <GitHubIcon />
       </IconButton>
@@ -250,10 +293,26 @@ const App: React.FC = () => {
     }
   });
 
+  const withoutMenu = path.startsWith("/json");
+
   return (
     <ThemeProvider theme={theme}>
       <div className={`${classes.root} ${!isDesktop ? classes.mobile : ""}`}>
-        {isDesktop ? (
+        {withoutMenu ? (
+          <div className={classes.backBar}>
+            <Link
+              href="/"
+              onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+                navigate("/");
+                e.preventDefault();
+              }}
+            >
+              <IconButton aria-label="delete">
+                <ChevronLeftIcon fontSize="small" />
+              </IconButton>
+            </Link>
+          </div>
+        ) : isDesktop ? (
           <div className={classes.left}>
             <div className={classes.inset}>
               <Typography variant="subtitle1">Hello, I'm</Typography>
@@ -262,7 +321,7 @@ const App: React.FC = () => {
               </Typography>
               <Typography variant="subtitle1">Fullstack Developer</Typography>
               <MenuComponent />
-              <SocialComponent />
+              <SocialComponent display={path.startsWith("/json") ? "block" : "flex"} />
             </div>
           </div>
         ) : (
@@ -297,6 +356,7 @@ const Router = () => {
       "": () => <ExperienceView />,
       // '/about': () => <AboutView />,
       "/guid": () => <GuidView />,
+      "/json": () => <JsonView />,
     },
     { matchTrailingSlash: true }
   );

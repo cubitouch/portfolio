@@ -17,16 +17,19 @@
     "@types/react-dom": "^16.9.7",
     "googleapis": "^51.0.0",
     "jsonwebtoken": "^8.5.1",
+    "monaco-editor": "^0.20.0",
+    "monaco-editor-webpack-plugin": "^1.9.0",
     "raviger": "^1.4.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-ga": "^2.7.0",
+    "react-monaco-editor": "^0.36.0",
     "react-scripts": "3.4.1",
     "typescript": "^3.7.5"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
     "prepare": "cross-env rm -rf ./build/200.html && react-snap",
     "push": "firebase deploy",
     "deploy": "npm run build && npm run prepare && npm run push",
@@ -56,6 +59,7 @@
   },
   "devDependencies": {
     "cross-env": "^7.0.2",
+    "react-app-rewired": "^2.1.6",
     "react-snap": "^1.23.0",
     "rimraf": "^3.0.2"
   }

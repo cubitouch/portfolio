@@ -33,7 +33,7 @@ const GuidView: React.FC = () => {
   const [renewed, updateRenewed] = useState(false);
   return (
     <>
-      <Typography variant="h2">Guid Generator</Typography>
+      <Typography variant="h2">GUID Generator</Typography>
       <Box className={classes.root}>
         <Typography variant="h3">{guid}</Typography>
         <Box>
