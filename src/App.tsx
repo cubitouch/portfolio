@@ -1,15 +1,15 @@
 import {
   IconButton,
+  Link,
   List,
   ListItem,
+  ListItemText,
   makeStyles,
   ThemeProvider,
   Typography,
   useMediaQuery,
-  Link,
-  ListItemText,
-  ListItemIcon,
 } from "@material-ui/core";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import CloseIcon from "@material-ui/icons/Close";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
@@ -21,12 +21,9 @@ import ReactGA from "react-ga";
 import "./App.css";
 import theme from "./style/theme";
 import ExperienceView from "./view/experience-view";
-import JsonView from "./view/json-view";
 import GuidView from "./view/guid-view";
-import WorkIcon from "@material-ui/icons/Work";
-import SettingsIcon from "@material-ui/icons/Settings";
-import HomeIcon from "@material-ui/icons/Home";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import JsonView from "./view/json-view";
+import RelaxView from "./view/relax-view";
 
 const useStyles = makeStyles({
   root: {
@@ -251,6 +248,7 @@ const MenuComponent: React.FC = () => {
       <Item route="/" text="Experience" />
       <Item route="/guid" text="GUID generator" />
       <Item route="/json" text="JSON Parser" />
+      <Item route="/relax" text="Relax" />
       {/* <ListItem button>About</ListItem> */}
     </List>
   );
@@ -293,11 +291,11 @@ const App: React.FC = () => {
     }
   });
 
-  const withoutMenu = path.startsWith("/json");
+  const withoutMenu = path.startsWith("/json") || path.startsWith("/relax");
 
   return (
     <ThemeProvider theme={theme}>
-      <div className={`${classes.root} ${!isDesktop ? classes.mobile : ""}`}>
+      <div className={`${classes.root} ${!isDesktop && !withoutMenu ? classes.mobile : ""}`}>
         {withoutMenu ? (
           <div className={classes.backBar}>
             <Link
@@ -357,6 +355,7 @@ const Router = () => {
       // '/about': () => <AboutView />,
       "/guid": () => <GuidView />,
       "/json": () => <JsonView />,
+      "/relax": () => <RelaxView />,
     },
     { matchTrailingSlash: true }
   );
