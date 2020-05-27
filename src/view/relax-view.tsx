@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { CircularProgress, Fab, makeStyles, useMediaQuery } from "@material-ui/core";
 import React, { useRef, useState } from "react";
 import theme from "../style/theme";
+import Main from "../component/main";
 
 // FOREST (https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80)
 // https://freesound.org/data/previews/506/506678_1648170-lq.mp3
@@ -139,13 +140,13 @@ const RelaxView: React.FC = () => {
   };
 
   return (
-    <>
+    <Main title="Relax" path="relax" description="Use this tool to listen to ambiant relaxing sounds" backButton>
       <div className={classes.root} style={isMobile ? { flexDirection: "column" } : {}}>
         {themes.map((theme) => (
-          <ThemePlayer theme={theme} />
+          <ThemePlayer key={theme.type} theme={theme} />
         ))}
       </div>
-    </>
+    </Main>
   );
 };
 

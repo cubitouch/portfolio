@@ -18,6 +18,7 @@ import LocationOnIcon from "@material-ui/icons/LocationOn";
 import WorkIcon from "@material-ui/icons/Work";
 import React from "react";
 import theme from "../style/theme";
+import Main from "../component/main";
 
 const resume = {
   experiences: [
@@ -228,44 +229,46 @@ const useStyles = makeStyles({
 const ExperienceView: React.FC = () => {
   const classes = useStyles();
   return (
-    <div className={classes.root}>
-      <Typography variant="h2">Experience</Typography>
-      <Stepper orientation="vertical">
-        {resume.experiences.map((exp, i) => (
-          <Step expanded>
-            <StepLabel icon={<Avatar>{i === 0 ? <LocationOnIcon /> : <WorkIcon />}</Avatar>}>
-              <Typography className={classes.headTime}>{exp.timeframe}</Typography>
-              <Typography className={classes.headTitle}>{exp.company}</Typography>
-              <Typography className={classes.headSubtitle}>{exp.title}</Typography>
-              <Typography variant="caption">{exp.location}</Typography>
-            </StepLabel>
-            <StepContent>
-              {exp.project.items ? (
-                <List dense subheader={<ListSubheader>{exp.project.name}:</ListSubheader>}>
-                  {exp.project.items.map((item) => (
-                    <ListItem>
-                      <ListItemAvatar>
-                        <LabelIcon />
-                      </ListItemAvatar>
-                      <ListItemText>{item}</ListItemText>
-                    </ListItem>
-                  ))}
-                </List>
-              ) : (
-                <div className="MuiListSubheader-root MuiListSubheader-gutters">{exp.project.name}</div>
-              )}
-              {exp.project.techs && (
-                <div className={classes.techs}>
-                  {exp.project.techs.map((item) => (
-                    <Chip variant="outlined" color="secondary" size="small" label={item} />
-                  ))}
-                </div>
-              )}
-            </StepContent>
-          </Step>
-        ))}
-      </Stepper>
-    </div>
+    <Main title="Experience" path="" description="Hello, I'm Hugo CARNICELLI Fullstack Developer">
+      <div className={classes.root}>
+        <Typography variant="h2">Experience</Typography>
+        <Stepper orientation="vertical">
+          {resume.experiences.map((exp, i) => (
+            <Step expanded>
+              <StepLabel icon={<Avatar>{i === 0 ? <LocationOnIcon /> : <WorkIcon />}</Avatar>}>
+                <Typography className={classes.headTime}>{exp.timeframe}</Typography>
+                <Typography className={classes.headTitle}>{exp.company}</Typography>
+                <Typography className={classes.headSubtitle}>{exp.title}</Typography>
+                <Typography variant="caption">{exp.location}</Typography>
+              </StepLabel>
+              <StepContent>
+                {exp.project.items ? (
+                  <List dense subheader={<ListSubheader>{exp.project.name}:</ListSubheader>}>
+                    {exp.project.items.map((item) => (
+                      <ListItem>
+                        <ListItemAvatar>
+                          <LabelIcon />
+                        </ListItemAvatar>
+                        <ListItemText>{item}</ListItemText>
+                      </ListItem>
+                    ))}
+                  </List>
+                ) : (
+                  <div className="MuiListSubheader-root MuiListSubheader-gutters">{exp.project.name}</div>
+                )}
+                {exp.project.techs && (
+                  <div className={classes.techs}>
+                    {exp.project.techs.map((item) => (
+                      <Chip variant="outlined" color="secondary" size="small" label={item} />
+                    ))}
+                  </div>
+                )}
+              </StepContent>
+            </Step>
+          ))}
+        </Stepper>
+      </div>
+    </Main>
   );
 };
 

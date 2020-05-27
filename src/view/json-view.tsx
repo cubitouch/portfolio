@@ -6,6 +6,7 @@ import PhotoSizeSelectSmallIcon from "@material-ui/icons/PhotoSizeSelectSmall";
 import React, { useState } from "react";
 import MonacoEditor from "react-monaco-editor";
 import theme from "../style/theme";
+import Main from "../component/main";
 
 const useStyles = makeStyles({
   root: {
@@ -56,7 +57,12 @@ const JsonView: React.FC = () => {
   };
 
   return (
-    <>
+    <Main
+      title="JSON parser"
+      path="json"
+      description="Use this tool to prettify, minify, edit, download JSON"
+      backButton
+    >
       <Typography variant="h2" style={{ justifyContent: "space-between", display: "flex" }}>
         JSON parser
         <span style={{ display: "flex", flex: "1", alignItems: "end", justifyContent: "flex-end" }}>
@@ -79,13 +85,10 @@ const JsonView: React.FC = () => {
             onDrop={(e) => {
               e.preventDefault();
               var files = e.dataTransfer.items || e.dataTransfer.files;
-              console.log("files", files.length);
               if (files.length === 1) {
-                console.log("file!", files[0]);
                 var file = files[0].getAsFile();
                 if (file) {
                   (file as any).text().then((data: string) => {
-                    console.log("data", data);
                     updateJson(data);
                     updateMessage("File imported");
                   });
@@ -150,7 +153,7 @@ const JsonView: React.FC = () => {
         onClose={() => updateMessage("")}
         message={message}
       />
-    </>
+    </Main>
   );
 };
 

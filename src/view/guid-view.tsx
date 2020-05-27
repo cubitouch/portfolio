@@ -2,6 +2,7 @@ import { Button, makeStyles, Snackbar, Typography, Box } from "@material-ui/core
 import React, { useState } from "react";
 import FileCopyIcon from "@material-ui/icons/FileCopy";
 import AutorenewIcon from "@material-ui/icons/Autorenew";
+import Main from "../component/main";
 
 const useStyles = makeStyles({
   root: {
@@ -32,7 +33,7 @@ const GuidView: React.FC = () => {
   const [copied, updateCopied] = useState(false);
   const [renewed, updateRenewed] = useState(false);
   return (
-    <>
+    <Main title="Guid generator" path="guid" description="Use this tool to get a new GUID">
       <Typography variant="h2">GUID Generator</Typography>
       <Box className={classes.root}>
         <Typography variant="h3">{guid}</Typography>
@@ -78,7 +79,7 @@ const GuidView: React.FC = () => {
         anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
         message={"Here is a new Guid"}
       />
-    </>
+    </Main>
   );
 };
 
