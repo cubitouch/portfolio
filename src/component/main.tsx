@@ -15,7 +15,7 @@ const useStyles = makeStyles({
     height: "100vh",
   },
   left: {
-    transition: "flex 0.3s ease-out",
+    // transition: "flex 0.3s ease-out",
     backgroundColor: theme.palette.primary.main,
     color: "white",
     flex: "2",
@@ -202,7 +202,7 @@ const Main: React.FC<IProps> = ({ title, path, description, backButton, children
   return (
     <div className={`${classes.root} ${!isDesktop && !backButton ? classes.mobile : ""}`}>
       {backButton ? (
-        <div className={classes.backBar}>
+        <header className={classes.backBar}>
           <Link
             href="/"
             onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
@@ -214,9 +214,9 @@ const Main: React.FC<IProps> = ({ title, path, description, backButton, children
               <ChevronLeftIcon fontSize="small" />
             </IconButton>
           </Link>
-        </div>
+        </header>
       ) : isDesktop ? (
-        <div className={classes.left}>
+        <header className={classes.left}>
           <div className={classes.inset}>
             <Typography variant="subtitle1">Hello, I'm</Typography>
             <Typography variant="h1">
@@ -226,9 +226,9 @@ const Main: React.FC<IProps> = ({ title, path, description, backButton, children
             <MenuComponent />
             <SocialComponent display={backButton ? "block" : "flex"} />
           </div>
-        </div>
+        </header>
       ) : (
-        <div className={`${classes.left} ${isMenuOpen ? classes.fullHeight : ""}`}>
+        <header className={`${classes.left} ${isMenuOpen ? classes.fullHeight : ""}`}>
           <div className={classes.header}>
             <Typography variant="h1">Hello, I'm Hugo CARNICELLI</Typography>
             <SpeedDialIcon
@@ -243,7 +243,7 @@ const Main: React.FC<IProps> = ({ title, path, description, backButton, children
             <MenuComponent />
             <SocialComponent />
           </div>
-        </div>
+        </header>
       )}
       <div className={classes.right}>
         <div className={classes.inset}>{children}</div>
