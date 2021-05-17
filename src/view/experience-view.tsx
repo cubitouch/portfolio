@@ -50,7 +50,7 @@ const resume = {
       },
     },
     {
-      timeframe: "September 2020 - Febuary 2021",
+      timeframe: "September 2020 - Febuary 2021 (6 mos)",
       company: "Crezco",
       title: "Senior Developer",
       location: "London, United Kingdom",
@@ -92,7 +92,7 @@ const resume = {
       },
     },
     {
-      timeframe: "Jul 2019 - August 2020",
+      timeframe: "Jul 2019 - August 2020 (13 mos)",
       company: "LEAP Legal Software UK",
       title: "Lead Software Developer",
       location: "London, United Kingdom",
