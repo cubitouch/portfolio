@@ -23,7 +23,76 @@ import Main from "../component/main";
 const resume = {
   experiences: [
     {
-      timeframe: "Jul 2019 - Present",
+      timeframe: "March 2021 - Present",
+      company: "Leyline",
+      title: "Fullstack Engineer",
+      location: "Remote",
+      project: {
+        name: "Web application maintenance and evolution",
+        items: [
+          "Front end improvement and bug fixes",
+          "Backend maintenance",
+          "Klaytn blockchain integration",
+          "CI setup",
+          "Agile practices improvements",
+        ],
+        techs: [
+          "Scrum",
+          "React",
+          "NodeJS",
+          "Typescript / Javascript",
+          "Git",
+          "Firebase / Google Cloud",
+          "Visual Studio Code",
+          "Docker",
+          "ZenHub"
+        ],
+      },
+    },
+    {
+      timeframe: "September 2020 - Febuary 2021",
+      company: "Crezco",
+      title: "Senior Developer",
+      location: "London, United Kingdom",
+      project: {
+        name: "Corporate website and web app",
+        items: [
+          "Front-end implementation (Figma designs to functionnal website",
+          "UI rework and improvements",
+          "Backend architecture rationalization",
+          "Peer to peer payment features",
+          "Authenticated user dashboard",
+          "Workflow system integration",
+          "E2E tests runner (Docker)",
+          "Release management and CI/CD pipelines update",
+          "Partial remote working",
+          "Agile practices improvements",
+        ],
+        techs: [
+          "Scrum",
+          "React",
+          "Blazor",
+          "ASP.NET Core",
+          "Git",
+          "Material-UI",
+          "Azure",
+          "SQL Server",
+          "Entity Framework",
+          "CI/DC",
+          "Unit/Integration/E2E testing",
+          "Cypress",
+          "Elsa Workflows",
+          "Lottie",
+          "Visual Studio Code",
+          "Visual Studio",
+          "Seq",
+          "Jira",
+          "Docker",
+        ],
+      },
+    },
+    {
+      timeframe: "Jul 2019 - August 2020",
       company: "LEAP Legal Software UK",
       title: "Lead Software Developer",
       location: "London, United Kingdom",
@@ -229,21 +298,40 @@ const useStyles = makeStyles({
 const ExperienceView: React.FC = () => {
   const classes = useStyles();
   return (
-    <Main title="Experience" path="" description="Hello, I'm Hugo CARNICELLI Fullstack Developer">
+    <Main
+      title="Experience"
+      path=""
+      description="Hello, I'm Hugo CARNICELLI Fullstack Developer"
+    >
       <div className={classes.root}>
         <Typography variant="h2">Experience</Typography>
         <Stepper orientation="vertical">
           {resume.experiences.map((exp, i) => (
             <Step expanded>
-              <StepLabel icon={<Avatar>{i === 0 ? <LocationOnIcon /> : <WorkIcon />}</Avatar>}>
-                <Typography className={classes.headTime}>{exp.timeframe}</Typography>
-                <Typography className={classes.headTitle}>{exp.company}</Typography>
-                <Typography className={classes.headSubtitle}>{exp.title}</Typography>
+              <StepLabel
+                icon={
+                  <Avatar>{i === 0 ? <LocationOnIcon /> : <WorkIcon />}</Avatar>
+                }
+              >
+                <Typography className={classes.headTime}>
+                  {exp.timeframe}
+                </Typography>
+                <Typography className={classes.headTitle}>
+                  {exp.company}
+                </Typography>
+                <Typography className={classes.headSubtitle}>
+                  {exp.title}
+                </Typography>
                 <Typography variant="caption">{exp.location}</Typography>
               </StepLabel>
               <StepContent>
                 {exp.project.items ? (
-                  <List dense subheader={<ListSubheader>{exp.project.name}:</ListSubheader>}>
+                  <List
+                    dense
+                    subheader={
+                      <ListSubheader>{exp.project.name}:</ListSubheader>
+                    }
+                  >
                     {exp.project.items.map((item) => (
                       <ListItem>
                         <ListItemAvatar>
@@ -254,12 +342,19 @@ const ExperienceView: React.FC = () => {
                     ))}
                   </List>
                 ) : (
-                  <div className="MuiListSubheader-root MuiListSubheader-gutters">{exp.project.name}</div>
+                  <div className="MuiListSubheader-root MuiListSubheader-gutters">
+                    {exp.project.name}
+                  </div>
                 )}
                 {exp.project.techs && (
                   <div className={classes.techs}>
                     {exp.project.techs.map((item) => (
-                      <Chip variant="outlined" color="secondary" size="small" label={item} />
+                      <Chip
+                        variant="outlined"
+                        color="secondary"
+                        size="small"
+                        label={item}
+                      />
                     ))}
                   </div>
                 )}

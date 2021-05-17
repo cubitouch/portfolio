@@ -220,7 +220,7 @@ const Main: React.FC<IProps> = ({ title, path, description, backButton, children
           <div className={classes.inset}>
             <Typography variant="subtitle1">Hello, I'm</Typography>
             <Typography variant="h1">
-              Hugo <b>CARNICELLI</b>
+              Hugo <b>Carnicelli</b>
             </Typography>
             <Typography variant="subtitle1">Fullstack Developer</Typography>
             <MenuComponent />
@@ -230,7 +230,7 @@ const Main: React.FC<IProps> = ({ title, path, description, backButton, children
       ) : (
         <header className={`${classes.left} ${isMenuOpen ? classes.fullHeight : ""}`}>
           <div className={classes.header}>
-            <Typography variant="h1">Hello, I'm Hugo CARNICELLI</Typography>
+            <Typography variant="h1">Hello, I'm Hugo Carnicelli</Typography>
             <SpeedDialIcon
               icon={<MenuIcon />}
               openIcon={<CloseIcon />}
