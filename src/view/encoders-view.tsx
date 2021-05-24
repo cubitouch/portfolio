@@ -40,8 +40,8 @@ const EncodersView: React.FC = () => {
   const classes = useStyles();
   const [base64, updateBase64] = useState("SGVsbG8gd29ybGQ=");
   const [base64Decoded, updateBase64Decoded] = useState("Hello world");
-  const [url, updateUrl] = useState("Hello%2C%20I'm%20Hugo%20CARNICELLI%2C%20Fullstack%20Developer");
-  const [urlDecoded, updateUrlDecoded] = useState("Hello, I'm Hugo CARNICELLI, Fullstack Developer");
+  const [url, updateUrl] = useState("Hello%2C%20I'm%20Hugo%20Carnicelli%2C%20Fullstack%20Developer");
+  const [urlDecoded, updateUrlDecoded] = useState("Hello, I'm Hugo Carnicelli, Fullstack Developer");
 
   return (
     <Main

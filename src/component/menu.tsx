@@ -81,10 +81,10 @@ const MenuComponent: React.FC = () => {
   return (
     <nav style={{ display: "flex", flex: "1" }}>
       <List className={classes.centeredList}>
-        <Item route="/" text="Experience" />
+        <Item route="/" text="About" />
+        <Item route="/experience" text="Experience" />
         <Item route="/zenmerry" text="Zenmerry" icon={faGooglePlay} />
         <Item route="/tools" text="Tools" />
-        {/* <ListItem button>About</ListItem> */}
       </List>
     </nav>
   );

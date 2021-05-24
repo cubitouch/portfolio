@@ -301,8 +301,8 @@ const ExperienceView: React.FC = () => {
   return (
     <Main
       title="Experience"
-      path=""
-      description="Hello, I'm Hugo CARNICELLI Fullstack Developer"
+      path="experience"
+      description="10+ years in the web development arena"
     >
       <div className={classes.root}>
         <Typography variant="h2">Experience</Typography>

@@ -5,6 +5,7 @@ import ReactGA from "react-ga";
 import "./App.css";
 import Main from "./component/main";
 import theme from "./style/theme";
+import AboutView from "./view/about-view";
 import EncodersView from "./view/encoders-view";
 import ExperienceView from "./view/experience-view";
 import GuidView from "./view/guid-view";
@@ -38,8 +39,8 @@ const App: React.FC = () => {
 const Router = () => {
   const routeResult = useRoutes(
     {
-      "": () => <ExperienceView />,
-      // '/about': () => <AboutView />,
+      "/": () => <AboutView />,
+      "/experience": () => <ExperienceView />,
       "/tools": () => <ToolsView />,
       "/guid": () => <GuidView />,
       "/json": () => <JsonView />,
