@@ -31,7 +31,7 @@ jobs:
         run: npm run build
 
       - name: Pre-render
-        run: npm run prepare
+        run: npm run prerender
         
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
