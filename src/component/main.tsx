@@ -197,7 +197,7 @@ const Main: React.FC<IProps> = ({ title, path, description, backButton, children
     if (descriptionElement) {
       descriptionElement.setAttribute("content", description);
     }
-  }, []);
+  }, [title, path, description]);
 
   return (
     <div className={`${classes.root} ${!isDesktop && !backButton ? classes.mobile : ""}`}>

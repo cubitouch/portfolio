@@ -188,7 +188,7 @@ const RelaxView: React.FC = () => {
           <div className={classes.background} style={{ backgroundImage: `url('${theme.imageUrl}')` }}>
             <Paper style={{ position: "absolute", padding: 16, bottom: 16 }}>
               Image: {theme.imageCredit} - Sound:{" "}
-              <a href={theme.soundCredit} target="_blank" rel="nofollow">
+              <a href={theme.soundCredit} target="_blank" rel="noopener noreferrer">
                 {theme.soundCredit}
               </a>
             </Paper>
