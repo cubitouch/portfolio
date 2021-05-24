@@ -34,9 +34,9 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
-    "prepare": "cross-env rm -rf ./build/200.html && react-snap",
+    "prerender": "cross-env rm -rf ./build/200.html && react-snap",
     "push": "firebase deploy",
-    "deploy": "npm run build && npm run prepare && npm run push",
+    "deploy": "npm run build && npm run prerender && npm run push",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
