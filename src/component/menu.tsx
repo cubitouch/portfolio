@@ -1,5 +1,15 @@
-import { Link, List, ListItem, ListItemText, makeStyles, ListItemIcon } from "@material-ui/core";
-import { faGooglePlay, IconDefinition } from "@fortawesome/free-brands-svg-icons";
+import {
+  Link,
+  List,
+  ListItem,
+  ListItemText,
+  makeStyles,
+  ListItemIcon,
+} from "@material-ui/core";
+import {
+  faGooglePlay,
+  IconDefinition,
+} from "@fortawesome/free-brands-svg-icons";
 import { navigate, usePath } from "raviger";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -35,14 +45,28 @@ const MenuComponent: React.FC = () => {
   const classes = useStyles();
   const path = usePath();
 
-  const Item = ({ route, text, icon }: { route: string; text: string; icon?: IconDefinition }) => (
-    <ListItem button selected={path === route || path === `${route}/`} onClick={() => navigate(route)}>
+  const Item = ({
+    route,
+    text,
+    icon,
+  }: {
+    route: string;
+    text: string;
+    icon?: IconDefinition;
+  }) => (
+    <ListItem
+      button
+      selected={path === route || path === `${route}/`}
+      onClick={() => navigate(route)}
+    >
       <ListItemText>
         <Link
           href={route}
           color="inherit"
           underline="none"
-          onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => e.preventDefault()}
+          onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) =>
+            e.preventDefault()
+          }
         >
           {text}
         </Link>
@@ -59,9 +83,7 @@ const MenuComponent: React.FC = () => {
       <List className={classes.centeredList}>
         <Item route="/" text="Experience" />
         <Item route="/zenmerry" text="Zenmerry" icon={faGooglePlay} />
-        <Item route="/json" text="JSON" />
-        <Item route="/guid" text="GUID" />
-        <Item route="/encoders" text="Base64 &amp; URL" />
+        <Item route="/tools" text="Tools" />
         {/* <ListItem button>About</ListItem> */}
       </List>
     </nav>

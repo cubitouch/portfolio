@@ -10,6 +10,7 @@ import ExperienceView from "./view/experience-view";
 import GuidView from "./view/guid-view";
 import JsonView from "./view/json-view";
 import RelaxView from "./view/relax-view";
+import ToolsView from "./view/tools-view";
 
 const useStyles = makeStyles({
   root: {},
@@ -97,6 +98,7 @@ const Router = () => {
     {
       "": () => <ExperienceView />,
       // '/about': () => <AboutView />,
+      "/tools": () => <ToolsView />,
       "/guid": () => <GuidView />,
       "/json": () => <JsonView />,
       "/encoders": () => <EncodersView />,

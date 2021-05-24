@@ -26,7 +26,7 @@ const resume = {
       timeframe: "March 2021 - Present",
       company: "Leyline",
       title: "Fullstack Engineer",
-      location: "Remote",
+      location: "Full Remote",
       project: {
         name: "Web application maintenance and evolution",
         items: [
@@ -45,7 +45,7 @@ const resume = {
           "Firebase / Google Cloud",
           "Visual Studio Code",
           "Docker",
-          "ZenHub"
+          "ZenHub",
         ],
       },
     },
@@ -292,6 +292,7 @@ const useStyles = makeStyles({
     color: theme.palette.grey[700],
     lineHeight: "16px",
   },
+  headLocation: { color: "rgba(0, 0, 0, 0.54)" },
   techs: { marginLeft: 16 },
 });
 
@@ -322,7 +323,7 @@ const ExperienceView: React.FC = () => {
                 <Typography className={classes.headSubtitle}>
                   {exp.title}
                 </Typography>
-                <Typography variant="caption">{exp.location}</Typography>
+                <Typography variant="caption" className={classes.headLocation}>{exp.location}</Typography>
               </StepLabel>
               <StepContent>
                 {exp.project.items ? (
