@@ -1,6 +1,6 @@
 ## About
 
-This codebase is used to deploy: [https://hugocarnicelli.com](hugocarnicelli.com)
+This codebase is used to deploy: [hugocarnicelli.com](https://hugocarnicelli.com)
 
 ## CI
 
