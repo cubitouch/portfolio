@@ -15,6 +15,7 @@ const options = {
   },
   chart: {
     type: "pie",
+    width: 400,
   },
   title: {
     text: "Agile<br/>development",
@@ -134,7 +135,10 @@ const useStyles = makeStyles((theme) => ({
   },
   textBlock: {
     textAlign: "center",
-    padding: "16px 65px",
+    padding: "16px 64px",
+    [theme.breakpoints.down("sm")]: {
+      padding: "16px 16px",
+    },
   },
   seal: {
     "& img": {
