@@ -39,7 +39,7 @@ const App: React.FC = () => {
 const Router = () => {
   const routeResult = useRoutes(
     {
-      "/": () => <AboutView />,
+      "": () => <AboutView />,
       "/experience": () => <ExperienceView />,
       "/tools": () => <ToolsView />,
       "/guid": () => <GuidView />,

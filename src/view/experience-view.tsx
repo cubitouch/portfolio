@@ -308,7 +308,7 @@ const ExperienceView: React.FC = () => {
         <Typography variant="h2">Experience</Typography>
         <Stepper orientation="vertical">
           {resume.experiences.map((exp, i) => (
-            <Step expanded>
+            <Step expanded key={i}>
               <StepLabel
                 icon={
                   <Avatar>{i === 0 ? <LocationOnIcon /> : <WorkIcon />}</Avatar>
@@ -323,7 +323,9 @@ const ExperienceView: React.FC = () => {
                 <Typography className={classes.headSubtitle}>
                   {exp.title}
                 </Typography>
-                <Typography variant="caption" className={classes.headLocation}>{exp.location}</Typography>
+                <Typography variant="caption" className={classes.headLocation}>
+                  {exp.location}
+                </Typography>
               </StepLabel>
               <StepContent>
                 {exp.project.items ? (
@@ -333,8 +335,8 @@ const ExperienceView: React.FC = () => {
                       <ListSubheader>{exp.project.name}:</ListSubheader>
                     }
                   >
-                    {exp.project.items.map((item) => (
-                      <ListItem>
+                    {exp.project.items.map((item, i) => (
+                      <ListItem key={`item-${i}`}>
                         <ListItemAvatar>
                           <LabelIcon />
                         </ListItemAvatar>
@@ -349,8 +351,9 @@ const ExperienceView: React.FC = () => {
                 )}
                 {exp.project.techs && (
                   <div className={classes.techs}>
-                    {exp.project.techs.map((item) => (
+                    {exp.project.techs.map((item, i) => (
                       <Chip
+                        key={`tech-${i}`}
                         variant="outlined"
                         color="secondary"
                         size="small"
