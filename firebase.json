@@ -1,6 +1,5 @@
 {
   "hosting": {
-    "target": "hugocarnicelli-1ae53",
     "public": "dist",
     "ignore": [
       "firebase.json",
