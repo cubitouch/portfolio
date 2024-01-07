@@ -30,8 +30,8 @@ jobs:
       - name: Build
         run: npm run build
         
-      - name: Deploy to Firebase
       - uses: FirebaseExtended/action-hosting-deploy@v0
+      - name: Deploy to Firebase
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_HUGOCARNICELLI_1AE53 }}'
