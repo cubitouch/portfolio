@@ -28,8 +28,8 @@ function App() {
               "I'm an Agilist",
               "I'm a Frontend Developer",
               "I'm a Data Analyst",
-              "I'm a Fullstack Engineer",
               "I'm a Design lover",
+              "I'm a DevOps enthusiast",
             ].flatMap((item) => [item, 2000])}
             cursor={true}
             repeat={Infinity}
