@@ -12,27 +12,16 @@ export const lightTheme = createTheme({
     },
   },
   typography: {
+    allVariants: {
+      fontFamily: "'Montserrat', sans-serif",
+    },
     h1: {
       fontFamily: "'Titillium Web', sans-serif",
       letterSpacing: "0.05em",
     },
     h2: {
-      textTransform: "uppercase",
-      fontWeight: 700,
-      letterSpacing: "0.1em",
-      fontFamily: "'Montserrat', sans-serif",
-    },
-    h3: {
-      fontFamily: "'Montserrat', sans-serif",
-    },
-    h4: {
-      fontFamily: "'Montserrat', sans-serif",
-    },
-    h5: {
-      fontFamily: "'Montserrat', sans-serif",
-    },
-    h6: {
-      fontFamily: "'Montserrat', sans-serif",
+      fontFamily: "'Titillium Web', sans-serif",
+      letterSpacing: "0.05em",
     },
   },
   components: {
