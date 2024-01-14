@@ -1,5 +1,6 @@
+/// <reference types="vite-plugin-svgr/client" />
 import { Container, Paper, Stack, Typography, useTheme } from "@mui/material";
-import { Logo } from "../logo";
+import Logo from "../assets/logo.svg?react";
 
 interface SlideProps {
   children: React.ReactNode;

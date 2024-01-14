@@ -1,3 +1,4 @@
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import {
@@ -19,7 +20,6 @@ function App() {
   return (
     <ThemeProvider theme={lightTheme}>
       <Slide primary={"Hi, I'm Hugo"} logo background={topSlideBackground}>
-        <Typography variant="h2"></Typography>
         <Typography variant="h1">
           <TypeAnimation
             speed={40}
@@ -35,6 +35,23 @@ function App() {
             repeat={Infinity}
           />
         </Typography>
+        <Fab
+          size="large"
+          color="primary"
+          sx={{
+            position: "absolute",
+            bottom: theme.spacing(8),
+            right: theme.spacing(8),
+          }}
+          onClick={() =>
+            scrollBy({
+              behavior: "smooth",
+              top: window.innerHeight,
+            })
+          }
+        >
+          <ExpandMoreIcon />
+        </Fab>
       </Slide>
 
       <Slide dark primary={"My journey"}>
