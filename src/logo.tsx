@@ -1,6 +1,6 @@
 const LogoInternal = () => (
-  <svg width="200" height="220" viewBox="0 0 100 100">
-    <g fill="#c4edde">
+  <svg width="200" height="220" viewBox="5 0 100 100">
+    <g fill="currentColor">
       <circle
         xmlns="http://www.w3.org/2000/svg"
         cx="42.125"
@@ -135,33 +135,6 @@ const LogoInternal = () => (
   </svg>
 );
 
-const LogoContainer = () => {
-  return (
-    <div style={{ position: "absolute" }}>
-      <svg width="360" height="380" viewBox="0 0 50 57">
-        <g id="SvgjsG6504" fill="#384259">
-          <path
-            xmlns="http://www.w3.org/2000/svg"
-            d="M23.11 55.78L1.69 43.41A3.39 3.39 0 0 1 0 40.48V15.75a3.39 3.39 0 0 1 1.69-2.94L23.11.45a3.39 3.39 0 0 1 3.39 0l21.41 12.37a3.39 3.39 0 0 1 1.69 2.94v24.72a3.39 3.39 0 0 1-1.69 2.94L26.5 55.78a3.39 3.39 0 0 1-3.39 0z"
-          ></path>
-        </g>
-      </svg>
-    </div>
-  );
+export const Logo = () => {
+  return <LogoInternal />;
 };
-
-export const Logo = () => (
-    <div
-      style={{
-        display: "inline-flex",
-          height: 400,
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <LogoContainer />
-      <div style={{ zIndex: "1" }}>
-        <LogoInternal />
-      </div>
-    </div>
-);
