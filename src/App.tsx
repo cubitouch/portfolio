@@ -8,10 +8,11 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
+import { TypeAnimation } from "react-type-animation";
 import "./App.css";
+import topSlideBackground from "./assets/lukas-blazek-EWDvHNNfUmQ-unsplash-min.jpg";
 import { Slide } from "./components/slide";
 import { lightTheme } from "./theme";
-import topSlideBackground from "./assets/lukas-blazek-EWDvHNNfUmQ-unsplash-min.jpg";
 
 function App() {
   const theme = useTheme();
@@ -19,7 +20,21 @@ function App() {
     <ThemeProvider theme={lightTheme}>
       <Slide primary={"Hi, I'm Hugo"} logo background={topSlideBackground}>
         <Typography variant="h2"></Typography>
-        <Typography variant="h1">I'm a Software Engineer</Typography>
+        <Typography variant="h1">
+          <TypeAnimation
+            speed={40}
+            sequence={[
+              "I'm a Software Engineer",
+              "I'm an Agilist",
+              "I'm a Frontend Developer",
+              "I'm a Data Analyst",
+              "I'm a Fullstack Engineer",
+              "I'm a Design lover",
+            ].flatMap((item) => [item, 2000])}
+            cursor={true}
+            repeat={Infinity}
+          />
+        </Typography>
       </Slide>
 
       <Slide dark primary={"My journey"}>
