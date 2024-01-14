@@ -35,7 +35,7 @@ export const Slide = ({
           ? theme.palette.secondary.contrastText
           : dark
           ? theme.palette.primary.contrastText
-          : "#171719",
+          : theme.palette.primary.dark,
         position: "relative",
         overflow: "hidden",
         zIndex: 0,

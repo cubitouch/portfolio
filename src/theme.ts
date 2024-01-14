@@ -4,10 +4,14 @@ export const lightTheme = createTheme({
   palette: {
     primary: {
       main: "#384259",
-      contrastText: "#c4edde",
+      dark: "#242b3a",
+      light: "#4c5978",
+      contrastText: "#ebf9f4",
     },
     secondary: {
-      main: "#c4edde",
+      main: "#ebf9f4",
+      dark: "#9de1c8",
+      light: "#c4edde",
       contrastText: "#384259",
     },
   },
