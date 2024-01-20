@@ -62,7 +62,7 @@ export const HomePage = () => {
               speed={40}
               sequence={[
                 "I'm a Software Engineer",
-                "I'm a Climate Tech believer",
+                "I'm a Climate Tech actor",
                 "I'm an Agilist",
                 "I'm a Design lover",
                 "I'm a DevOps enthusiast",
