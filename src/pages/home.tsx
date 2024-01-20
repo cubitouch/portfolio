@@ -64,7 +64,7 @@ export const HomePage = () => {
                 "I'm a Software Engineer",
                 "I'm a Climate Tech actor",
                 "I'm an Agilist",
-                "I'm a Design lover",
+                "I'm a Design partner",
                 "I'm a DevOps enthusiast",
               ].flatMap((item) => [item, 2000])}
               cursor={true}
