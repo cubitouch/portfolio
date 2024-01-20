@@ -38,9 +38,37 @@ export const lightTheme = createTheme({
         elevation: 0,
         position: "fixed",
       },
+    },
+    MuiTabs: {
+      styleOverrides: {
+        root: { height: 64 },
+        flexContainer: { height: "100%" },
+      },
+    },
+    MuiTab: {
       styleOverrides: {
         root: {
-          borderBottom: `solid 1px ${palette.primary.light}`,
+          textTransform: "none",
+          height: "100%",
+          color: palette.primary.contrastText,
+          "&::after": {
+            content: '""',
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            width: "100%",
+            height: 4,
+            backgroundColor: palette.secondary.light,
+            transform: "scaleX(0) translateY(4px)",
+            transition: "transform 0.2s ease-in-out",
+            borderRadius: "2px 2px 0 0",
+          },
+          "&.Mui-selected": {
+            color: palette.primary.contrastText,
+            "&::after": {
+              transform: "scaleX(1) translateY(0)",
+            },
+          },
         },
       },
     },

@@ -6,6 +6,7 @@ interface SlideProps {
   dark?: boolean;
   primary?: string;
   background?: string;
+  id?: string;
 }
 export const Slide = ({
   children,
@@ -13,12 +14,14 @@ export const Slide = ({
   dark,
   primary,
   background,
+  id,
 }: SlideProps) => {
   const theme = useTheme();
   return (
     <Paper
+      id={id}
       sx={{
-        display: 'flex',
+        display: "flex",
         padding: theme.spacing(8, 0),
         minHeight: `calc(100dvh - ${theme.spacing(16)})`,
         background: background
