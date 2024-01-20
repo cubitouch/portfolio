@@ -57,7 +57,7 @@ export const HomePage = () => {
       <ScrollSpy activeClass="Mui-selected" scrollThrottle={50}>
         <Slide background={topSlideBackground} dark>
           <Box flex="1" />
-          <Typography variant="h1">
+          <Typography variant="h1" color={theme.palette.common.white}>
             <TypeAnimation
               speed={40}
               sequence={[
