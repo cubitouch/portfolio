@@ -1,13 +1,10 @@
-/// <reference types="vite-plugin-svgr/client" />
 import { Container, Paper, Stack, Typography, useTheme } from "@mui/material";
-import Logo from "../assets/logo.svg?react";
 
 interface SlideProps {
   children: React.ReactNode;
   light?: boolean;
   dark?: boolean;
-  primary: string;
-  logo?: boolean;
+  primary?: string;
   background?: string;
 }
 export const Slide = ({
@@ -15,13 +12,13 @@ export const Slide = ({
   light,
   dark,
   primary,
-  logo,
   background,
 }: SlideProps) => {
   const theme = useTheme();
   return (
     <Paper
       sx={{
+        display: 'flex',
         padding: theme.spacing(8, 0),
         minHeight: `calc(100dvh - ${theme.spacing(16)})`,
         background: background
@@ -51,17 +48,18 @@ export const Slide = ({
         },
       }}
     >
-      <Container>
+      <Container maxWidth={false} sx={{ flex: 1, display: "flex" }}>
         <Stack spacing={4}>
-          <Typography
-            variant="h2"
-            display="flex"
-            alignItems="center"
-            sx={{ "& svg": { marginRight: theme.spacing(1) } }}
-          >
-            {logo && <Logo />}
-            {primary}
-          </Typography>
+          {primary && (
+            <Typography
+              variant="h2"
+              display="flex"
+              alignItems="center"
+              sx={{ "& svg": { marginRight: theme.spacing(1) } }}
+            >
+              {primary}
+            </Typography>
+          )}
           {children}
         </Stack>
       </Container>
