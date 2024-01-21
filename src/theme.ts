@@ -48,6 +48,7 @@ export const lightTheme = createTheme({
     MuiTab: {
       styleOverrides: {
         root: {
+          fontWeight: 600,
           textTransform: "none",
           height: "100%",
           color: palette.primary.contrastText,
