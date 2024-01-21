@@ -81,7 +81,15 @@ export const HomePage = () => {
       >
         <Slide background={topSlideBackground} dark id={HOME_ID}>
           <Box flex="1" />
-          <Typography variant="h1" color={theme.palette.common.white}>
+          <Typography
+            variant="h1"
+            color={theme.palette.common.white}
+            sx={{
+              "& .type-animation::after": {
+                content: "'_'",
+              },
+            }}
+          >
             <TypeAnimation
               speed={40}
               sequence={[
@@ -93,6 +101,7 @@ export const HomePage = () => {
               ].flatMap((item) => [item, 2000])}
               cursor={true}
               repeat={Infinity}
+              className="type-animation"
             />
           </Typography>
         </Slide>
