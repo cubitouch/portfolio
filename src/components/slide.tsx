@@ -1,4 +1,5 @@
 import { Container, Paper, Stack, Typography, useTheme } from "@mui/material";
+import { NAVBAR_HEIGHT } from "../constants";
 
 interface SlideProps {
   children: React.ReactNode;
@@ -23,9 +24,9 @@ export const Slide = ({
       sx={{
         display: "flex",
         padding: theme.spacing(8, 0),
-        minHeight: `calc(100dvh - ${background ? 0 : 64}px - ${theme.spacing(
-          16
-        )})`,
+        minHeight: `calc(100dvh - ${
+          background ? 0 : NAVBAR_HEIGHT
+        }px - ${theme.spacing(16)})`,
         background: background
           ? "none"
           : light

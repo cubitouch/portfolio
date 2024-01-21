@@ -15,12 +15,20 @@ import { TypeAnimation } from "react-type-animation";
 import topSlideBackground from "../assets/blanca-paloma-sanchez-AvfTRF9QINM-unsplash-min.jpg";
 import { Slide } from "../components/slide";
 
+import { useState } from "react";
 import ScrollSpy from "react-ui-scrollspy";
 import Logo from "../assets/logo.svg?react";
-const NavBar = () => {
+import { NAVBAR_HEIGHT } from "../constants";
+
+const HOME_ID = "top";
+
+interface NavBarProps {
+  currentSection: string;
+}
+const NavBar = ({ currentSection }: NavBarProps) => {
   const srollTo = (id: string) => {
     window.scrollTo({
-      top: (document.getElementById(id)?.offsetTop ?? 0) - 64,
+      top: (document.getElementById(id)?.offsetTop ?? 0) - NAVBAR_HEIGHT,
       behavior: "smooth",
     });
   };
@@ -37,15 +45,21 @@ const NavBar = () => {
           </Typography>
           <Logo fontSize={32} />
           <Box flex="1"></Box>
-          <Tabs value={false}>
-            {["Journey", "Interests", "More"].map((tab) => (
-              <Tab
-                key={tab.toLowerCase()}
-                label={tab}
-                data-to-scrollspy-id={tab.toLowerCase()}
-                onClick={() => srollTo(tab.toLowerCase())}
-              />
-            ))}
+          <Tabs value={currentSection}>
+            {["", "Journey", "Interests", "More"].map((tab) => {
+              const id = tab.toLowerCase();
+              const value = !!id ? id : HOME_ID;
+              return (
+                <Tab
+                  sx={!id ? { width: 0, minWidth: 0, padding: 0 } : undefined}
+                  value={value}
+                  key={value}
+                  label={tab}
+                  data-to-scrollspy-id={value}
+                  onClick={() => srollTo(id)}
+                />
+              );
+            })}
           </Tabs>
         </Stack>
       </Toolbar>
@@ -55,11 +69,17 @@ const NavBar = () => {
 
 export const HomePage = () => {
   const theme = useTheme();
+  const [currentSection, setCurentSection] = useState(HOME_ID);
+
   return (
     <>
-      <NavBar />
-      <ScrollSpy activeClass="Mui-selected" scrollThrottle={50}>
-        <Slide background={topSlideBackground} dark>
+      <NavBar currentSection={currentSection} />
+      <ScrollSpy
+        offsetBottom={NAVBAR_HEIGHT}
+        scrollThrottle={50}
+        onUpdateCallback={(id) => setCurentSection(id)}
+      >
+        <Slide background={topSlideBackground} dark id={HOME_ID}>
           <Box flex="1" />
           <Typography variant="h1" color={theme.palette.common.white}>
             <TypeAnimation

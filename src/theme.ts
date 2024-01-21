@@ -1,4 +1,5 @@
 import { ThemeOptions, createTheme } from "@mui/material";
+import { NAVBAR_HEIGHT } from "./constants";
 
 const palette = {
   primary: {
@@ -41,7 +42,7 @@ export const lightTheme = createTheme({
     },
     MuiTabs: {
       styleOverrides: {
-        root: { height: 64 },
+        root: { height: NAVBAR_HEIGHT },
         flexContainer: { height: "100%" },
       },
     },
@@ -63,6 +64,7 @@ export const lightTheme = createTheme({
             transform: "scaleX(0) translateY(4px)",
             transition: "transform 0.2s ease-in-out",
             borderRadius: "2px 2px 0 0",
+            zIndex: 1,
           },
           "&.Mui-selected": {
             color: palette.primary.contrastText,
