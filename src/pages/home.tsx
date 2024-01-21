@@ -3,7 +3,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import {
   AppBar,
   Box,
-  Fab,
+  IconButton,
   Stack,
   Tab,
   Tabs,
@@ -31,7 +31,7 @@ const NavBar = () => {
           <Typography
             variant="h6"
             component="div"
-            sx={{ display: { xs: "none", md:'inherit' } }}
+            sx={{ display: { xs: "none", md: "inherit" } }}
           >
             Hi, I'm
           </Typography>
@@ -89,31 +89,24 @@ export const HomePage = () => {
         </Slide>
 
         <Slide dark primary={"What else?"} id="more">
-          <Stack direction="row" justifyContent="space-around">
-            <Box>
-              <Fab
-                aria-label="GitHub repository"
-                size="large"
-                target="_blank"
-                href="https://github.com/cubitouch/portfolio"
-                sx={{ marginBottom: theme.spacing(1) }}
-              >
-                <GitHubIcon />
-              </Fab>
-              <Typography variant="h5">How I've built this</Typography>
-            </Box>
-            <Box>
-              <Fab
-                aria-label="LinkedIn profile"
-                size="large"
-                target="_blank"
-                href="https://www.linkedin.com/in/hugo-carnicelli/"
-                sx={{ marginBottom: theme.spacing(1) }}
-              >
-                <LinkedInIcon />
-              </Fab>
-              <Typography variant="h5">How to reach me</Typography>
-            </Box>
+          <Box flex="1" />
+          <Stack direction="row" spacing={2} justifyContent="flex-end">
+            <IconButton
+              size="large"
+              color="secondary"
+              href="https://github.com/cubitouch/portfolio"
+              target="_blank"
+            >
+              <GitHubIcon fontSize="large" />
+            </IconButton>
+            <IconButton
+              size="large"
+              color="secondary"
+              href="https://www.linkedin.com/in/hugo-carnicelli"
+              target="_blank"
+            >
+              <LinkedInIcon fontSize="large" />
+            </IconButton>
           </Stack>
         </Slide>
       </ScrollSpy>

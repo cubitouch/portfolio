@@ -23,7 +23,9 @@ export const Slide = ({
       sx={{
         display: "flex",
         padding: theme.spacing(8, 0),
-        minHeight: `calc(100dvh - ${theme.spacing(16)})`,
+        minHeight: `calc(100dvh - ${background ? 0 : 64}px - ${theme.spacing(
+          16
+        )})`,
         background: background
           ? "none"
           : light
@@ -39,20 +41,22 @@ export const Slide = ({
         position: "relative",
         overflow: "hidden",
         zIndex: 0,
-        "&::before": {
-          zIndex: -1,
-          content: "''",
-          position: "absolute",
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: 0,
-          background: `url(${background}) no-repeat center center / cover`,
-        },
+        "&::before": background
+          ? {
+              zIndex: -1,
+              content: "''",
+              position: "absolute",
+              top: 0,
+              right: 0,
+              bottom: 0,
+              left: 0,
+              background: `url(${background}) no-repeat center center / cover`,
+            }
+          : undefined,
       }}
     >
       <Container maxWidth={false} sx={{ flex: 1, display: "flex" }}>
-        <Stack spacing={4}>
+        <Stack spacing={4} flex="1">
           {primary && (
             <Typography
               variant="h2"
