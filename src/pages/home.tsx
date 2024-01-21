@@ -28,7 +28,11 @@ const NavBar = () => {
     <AppBar>
       <Toolbar>
         <Stack spacing={1} direction="row" alignItems="center" flex="1">
-          <Typography variant="h6" component="div">
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ display: { xs: "none", md:'inherit' } }}
+          >
             Hi, I'm
           </Typography>
           <Logo fontSize={32} />
