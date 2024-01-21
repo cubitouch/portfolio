@@ -28,10 +28,10 @@ const NavBar = () => {
     <AppBar>
       <Toolbar>
         <Stack spacing={1} direction="row" alignItems="center" flex="1">
-          <Logo fontSize={32} />
           <Typography variant="h6" component="div">
-            Hi, I'm Hugo
+            Hi, I'm
           </Typography>
+          <Logo fontSize={32} />
           <Box flex="1"></Box>
           <Tabs value={false}>
             {["Journey", "Interests", "More"].map((tab) => (
