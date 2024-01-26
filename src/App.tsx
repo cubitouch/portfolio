@@ -4,7 +4,6 @@ import "./App.css";
 import { HomePage } from "./pages/home";
 import { lightTheme } from "./theme";
 
-
 function App() {
   return (
     <ThemeProvider theme={lightTheme}>
