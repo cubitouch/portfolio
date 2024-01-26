@@ -1,6 +1,8 @@
 import { ThemeOptions, createTheme } from "@mui/material";
 import { NAVBAR_HEIGHT } from "./constants";
 
+const baseTheme = createTheme();
+
 const palette = {
   primary: {
     main: "#384259",
@@ -25,6 +27,9 @@ export const lightTheme = createTheme({
     h1: {
       fontFamily: "'Paytone One', sans-serif",
       letterSpacing: "0.02em",
+      [baseTheme.breakpoints.down("md")]: {
+        fontSize: "3rem",
+      },
     },
   },
   components: {

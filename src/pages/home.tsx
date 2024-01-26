@@ -1,90 +1,52 @@
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import {
-  AppBar,
-  Box,
-  IconButton,
-  Stack,
-  Tab,
-  Tabs,
-  Toolbar,
-  Typography,
-  useTheme,
-} from "@mui/material";
-import { TypeAnimation } from "react-type-animation";
-import topSlideBackground from "../assets/blanca-paloma-sanchez-AvfTRF9QINM-unsplash-min.jpg";
-import { Slide } from "../components/slide";
-
+import { Box, IconButton, Stack, Typography, useTheme } from "@mui/material";
 import { useState } from "react";
+import { TypeAnimation } from "react-type-animation";
 import ScrollSpy from "react-ui-scrollspy";
-import Logo from "../assets/logo.svg?react";
+import topSlideBackground from "../assets/blanca-paloma-sanchez-AvfTRF9QINM-unsplash-min.jpg";
+import { HintButton } from "../components/hint-button";
+import { NavBar } from "../components/nav-bar";
+import { Slide } from "../components/slide";
 import { NAVBAR_HEIGHT } from "../constants";
 
-const HOME_ID = "top";
+export const HOME_ID = "top";
 
-interface NavBarProps {
-  currentSection: string;
-}
-const NavBar = ({ currentSection }: NavBarProps) => {
-  const srollTo = (id: string) => {
+export const HomePage = () => {
+  const theme = useTheme();
+  const [currentSection, setCurentSection] = useState(HOME_ID);
+  const scrollTo = (id: string) => {
     window.scrollTo({
       top: (document.getElementById(id)?.offsetTop ?? 0) - NAVBAR_HEIGHT,
       behavior: "smooth",
     });
   };
-  return (
-    <AppBar>
-      <Toolbar>
-        <Stack spacing={1} direction="row" alignItems="center" flex="1">
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ display: { xs: "none", md: "inherit" } }}
-          >
-            Hi, I'm
-          </Typography>
-          <Logo fontSize={32} />
-          <Box flex="1"></Box>
-          <Tabs value={currentSection}>
-            {["", "Journey", "Interests", "More"].map((tab) => {
-              const id = tab.toLowerCase();
-              const value = !!id ? id : HOME_ID;
-              return (
-                <Tab
-                  sx={!id ? { width: 0, minWidth: 0, padding: 0 } : undefined}
-                  value={value}
-                  key={value}
-                  label={tab}
-                  data-to-scrollspy-id={value}
-                  onClick={() => srollTo(id)}
-                />
-              );
-            })}
-          </Tabs>
-        </Stack>
-      </Toolbar>
-    </AppBar>
-  );
-};
-
-export const HomePage = () => {
-  const theme = useTheme();
-  const [currentSection, setCurentSection] = useState(HOME_ID);
 
   return (
     <>
-      <NavBar currentSection={currentSection} />
+      <NavBar
+        currentSection={currentSection}
+        scrollTo={scrollTo}
+        defaultSectionId={HOME_ID}
+      />
       <ScrollSpy
         offsetBottom={NAVBAR_HEIGHT}
         scrollThrottle={50}
         onUpdateCallback={(id) => setCurentSection(id)}
       >
-        <Slide background={topSlideBackground} dark id={HOME_ID}>
-          <Box flex="1" />
+        <Slide
+          background={topSlideBackground}
+          dark
+          id={HOME_ID}
+          hint={<HintButton onClick={() => scrollTo("journey")} />}
+        >
           <Typography
             variant="h1"
             color={theme.palette.common.white}
             sx={{
+              display: "flex",
+              flex: 1,
+              alignItems: "center",
               "& .type-animation::after": {
                 content: "'_'",
               },

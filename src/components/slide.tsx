@@ -1,4 +1,11 @@
-import { Container, Paper, Stack, Typography, useTheme } from "@mui/material";
+import {
+  Box,
+  Container,
+  Paper,
+  Stack,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import { NAVBAR_HEIGHT } from "../constants";
 
 interface SlideProps {
@@ -8,6 +15,7 @@ interface SlideProps {
   primary?: string;
   background?: string;
   id?: string;
+  hint?: React.ReactNode;
 }
 export const Slide = ({
   children,
@@ -16,6 +24,7 @@ export const Slide = ({
   primary,
   background,
   id,
+  hint,
 }: SlideProps) => {
   const theme = useTheme();
   return (
@@ -24,9 +33,10 @@ export const Slide = ({
       sx={{
         display: "flex",
         padding: theme.spacing(8, 0),
+        paddingBottom: hint ? 0 : theme.spacing(8),
         minHeight: `calc(100dvh - ${
           background ? 0 : NAVBAR_HEIGHT
-        }px - ${theme.spacing(16)})`,
+        }px - ${theme.spacing(hint ? 8 : 16)})`,
         background: background
           ? "none"
           : light
@@ -57,7 +67,7 @@ export const Slide = ({
       }}
     >
       <Container maxWidth={false} sx={{ flex: 1, display: "flex" }}>
-        <Stack spacing={4} flex="1">
+        <Stack spacing={hint ? 0 : 4} flex="1">
           {primary && (
             <Typography
               variant="h2"
@@ -69,6 +79,9 @@ export const Slide = ({
             </Typography>
           )}
           {children}
+          <Box display="flex" justifyContent="center">
+            {hint}
+          </Box>
         </Stack>
       </Container>
     </Paper>
