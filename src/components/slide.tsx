@@ -79,9 +79,11 @@ export const Slide = ({
             </Typography>
           )}
           {children}
-          <Box display="flex" justifyContent="center">
-            {hint}
-          </Box>
+          {hint && (
+            <Box display="flex" justifyContent="center">
+              {hint}
+            </Box>
+          )}
         </Stack>
       </Container>
     </Paper>

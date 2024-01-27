@@ -6,20 +6,10 @@ import {
   Box,
   Card,
   CardContent,
-  CardMedia,
+  Divider,
   Typography,
   useTheme,
 } from "@mui/material";
-import financeImage from "../assets/cards/anne-nygard-x07ELaNFt34-unsplash-min.jpg";
-import retailOpticalImage from "../assets/cards/bartosz-sujkowski-0zA84TFRjI8-unsplash-min.jpg";
-import blockchainImage from "../assets/cards/drawkit-illustrations-8iIUDnRq87o-unsplash-min.jpg";
-import climatetechImage from "../assets/cards/eugene-golovesov-0ElieIojOUk-unsplash-min.jpg";
-import insuranceImage from "../assets/cards/gustavo-S-W9vDL5whU-unsplash-min.jpg";
-import engineeringImage from "../assets/cards/james-harrison-vpOeXr5wmR4-unsplash-min.jpg";
-import gamblingImage from "../assets/cards/jonathan-petersson-W8V3G-Nk8FE-unsplash-min.jpg";
-import charitySportImage from "../assets/cards/nii-shu-pHQDyS-k5F0-unsplash-min.jpg";
-import legalImage from "../assets/cards/scott-graham-OQMZwNd3ThU-unsplash-min.jpg";
-import fintechImage from "../assets/cards/thriday-DV2g6qL39Cs-unsplash-min.jpg";
 import { SwiperWrapper } from "../components/swipper-wrapper";
 
 const journeyItems = [
@@ -31,7 +21,6 @@ const journeyItems = [
     duration: "3 years",
     industry: "Charity",
     technology: "Intranet",
-    image: charitySportImage,
   },
   // Grand Optical (Altimate)
   {
@@ -41,7 +30,6 @@ const journeyItems = [
     duration: "9 months",
     industry: "Optical Retail",
     technology: "Intranet",
-    image: retailOpticalImage,
   },
   // AssurOne Group (Altimate + SoftFluent)
   {
@@ -51,7 +39,6 @@ const journeyItems = [
     duration: "1.5 year",
     industry: "Insurance",
     technology: "White Label",
-    image: insuranceImage,
   },
   // SoftFluent
   {
@@ -61,7 +48,6 @@ const journeyItems = [
     duration: "1.5 year",
     industry: "Engineering",
     technology: "Microsoft Tech",
-    image: engineeringImage,
   },
   // Betclic
   {
@@ -71,7 +57,6 @@ const journeyItems = [
     duration: "1.5 year",
     industry: "Gambling",
     technology: "Web Application",
-    image: gamblingImage,
   },
   // Societe Generale
   {
@@ -81,7 +66,6 @@ const journeyItems = [
     duration: "1 year",
     industry: "Finance",
     technology: "Reporting",
-    image: financeImage,
   },
   // LEAP LEgal Software
   {
@@ -91,7 +75,6 @@ const journeyItems = [
     duration: "1 year",
     industry: "Legal",
     technology: "Marketplace",
-    image: legalImage,
   },
   // Crezco
   {
@@ -101,7 +84,6 @@ const journeyItems = [
     duration: "6 months",
     industry: "Fintech",
     technology: "Open Banking",
-    image: fintechImage,
   },
   // Leyline
   {
@@ -111,7 +93,6 @@ const journeyItems = [
     duration: "4 months",
     industry: "Tech For Good",
     technology: "Blockchain",
-    image: blockchainImage,
   },
   // Infogrid
   {
@@ -121,7 +102,6 @@ const journeyItems = [
     duration: "2 years (present)",
     industry: "Climate Tech",
     technology: "Internet of Things",
-    image: climatetechImage,
   },
 ];
 
@@ -130,51 +110,118 @@ export const JourneySlider = () => {
   return (
     <SwiperWrapper
       slideSx={{
-        display: "flex",
-        alignItems: "center",
+        "& .annotation": {
+          transform: "none",
+          opacity: 1,
+          transition: "opacity 0.5s ease-in-out, transform 0.5s ease-in-out",
+        },
+        "&.swiper-slide-prev .annotation": {
+          opacity: 0,
+          "&.top": {
+            transform: "translateY(+100%)",
+          },
+          "&.bottom": {
+            transform: "translateY(-100%)",
+          },
+        },
       }}
       items={journeyItems.map((item) => (
-        <Card
-          sx={{
-            flex: 1,
-            borderTopLeftRadius: theme.spacing(2),
-            borderTopRightRadius: theme.spacing(1),
-            borderBottomLeftRadius: theme.spacing(1),
-          }}
-        >
-          <CardContent
-            sx={{ display: "flex", justifyContent: "space-between" }}
+        <>
+          <Box
+            className="annotation top"
+            sx={{
+              display: "flex",
+              textAlignLast: "start",
+              alignItems: "flex-end",
+              "&::before": {
+                content: "''",
+                display: "inline-block",
+                height: theme.spacing(2),
+                width: theme.spacing(4),
+                marginLeft: theme.spacing(3),
+                marginRight: theme.spacing(1),
+                borderTop: `1px dashed ${theme.palette.secondary.main}`,
+                borderLeft: `1px dashed ${theme.palette.secondary.main}`,
+              },
+            }}
           >
-            <Box>
-              <Typography variant="h4">{item.industry}</Typography>
-              <Typography variant="h5">{item.technology}</Typography>
-            </Box>
-            <Box>
-              <Box
-                display="flex"
-                flexDirection="row"
-                gap={1}
-                alignItems="center"
-              >
-                <Typography variant="overline">
-                  {item.companyTopology}
-                </Typography>
-                <Avatar sx={{ backgroundColor: theme.palette.primary.main }}>
-                  {item.companyIcon}
-                </Avatar>
+            <Typography
+              variant="overline"
+              sx={{
+                flex: 1,
+                right: theme.spacing(8),
+                bottom: -24,
+                color: theme.palette.common.white,
+              }}
+            >
+              {item.companyTopology}
+            </Typography>
+          </Box>
+          <Card
+            sx={{
+              flex: 1,
+              borderTopLeftRadius: theme.spacing(1),
+              borderTopRightRadius: theme.spacing(1),
+              borderBottomLeftRadius: theme.spacing(1),
+            }}
+          >
+            <CardContent
+              sx={{ display: "flex", justifyContent: "space-between" }}
+            >
+              <Box>
+                <Typography variant="h4">{item.industry}</Typography>
+                <Typography variant="h5">{item.technology}</Typography>
               </Box>
-            </Box>
-          </CardContent>
-          <CardMedia image={item.image} sx={{ height: 140 }}></CardMedia>
-          <CardContent
-            sx={{ "&:last-child": { paddingBottom: theme.spacing(2) } }}
+              <Box>
+                <Box
+                  display="flex"
+                  flexDirection="row"
+                  gap={1}
+                  alignItems="center"
+                >
+                  <Avatar sx={{ backgroundColor: theme.palette.primary.main }}>
+                    {item.companyIcon}
+                  </Avatar>
+                </Box>
+              </Box>
+            </CardContent>
+            <Divider sx={{ borderStyle: "dashed" }} />
+            <CardContent sx={{ position: "relative" }}>
+              <Box textAlign="right">
+                <Typography variant="h6">{item.time}</Typography>
+              </Box>
+            </CardContent>
+          </Card>
+          <Box
+            className="annotation bottom"
+            sx={{
+              display: "flex",
+              textAlignLast: "end",
+              "&::after": {
+                content: "''",
+                display: "inline-block",
+                height: theme.spacing(2),
+                width: theme.spacing(4),
+                marginLeft: theme.spacing(1),
+                marginRight: theme.spacing(3),
+                borderBottom: `1px dashed ${theme.palette.secondary.main}`,
+                borderRight: `1px dashed ${theme.palette.secondary.main}`,
+              },
+            }}
           >
-            <Box textAlign="right">
-              <Typography variant="h6">{item.time}</Typography>
-              <Typography variant="overline">{item.duration}</Typography>
-            </Box>
-          </CardContent>
-        </Card>
+            <Typography
+              variant="overline"
+              sx={{
+                flex: 1,
+                right: theme.spacing(8),
+                bottom: -24,
+                color: theme.palette.common.white,
+              }}
+            >
+              {item.duration}
+            </Typography>
+          </Box>
+        </>
       ))}
     />
   );

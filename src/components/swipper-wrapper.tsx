@@ -10,7 +10,7 @@ register();
 
 interface SwiperWrapper {
   items: React.ReactNode[];
-  slideSx?: SxProps<Theme> | undefined;
+  slideSx?: SxProps<Theme>;
 }
 export const SwiperWrapper = ({ items, slideSx }: SwiperWrapper) => {
   const theme = useTheme();
@@ -26,7 +26,6 @@ export const SwiperWrapper = ({ items, slideSx }: SwiperWrapper) => {
         slidesPerView: 1,
         initialSlide: items.length - 1,
         navigation: {
-          enabled: true,
           prevEl: ".swiper-button-prev",
           nextEl: ".swiper-button-next",
         },
@@ -45,10 +44,9 @@ export const SwiperWrapper = ({ items, slideSx }: SwiperWrapper) => {
             slidesPerView: 4,
           },
         },
-        // pagination: {
-        //   el: ".swiper-pagination",
-        //   clickable: true,
-        // },
+        pagination: {
+          el: ".swiper-pagination",
+        },
       });
     }
 
@@ -60,43 +58,86 @@ export const SwiperWrapper = ({ items, slideSx }: SwiperWrapper) => {
   }, []);
 
   return (
-    <Box
-      className="swiper"
-      sx={{
-        flex: 1,
-        width: `calc(100vw - ${theme.spacing(4 * 2)})`,
-        [theme.breakpoints.down("sm")]: {
-          width: `calc(100vw - ${theme.spacing(3 * 2)})`,
-        },
-      }}
-    >
-      <Box display="flex" className="swiper-wrapper">
-        {/* Slides will go here */}
-        {items.map((item, i) => (
-          <Box key={i} className="swiper-slide" sx={slideSx}>
-            {item}
-          </Box>
-        ))}
+    <>
+      <Box
+        className="swiper"
+        sx={{
+          flex: 1,
+          width: `calc(100vw - ${theme.spacing(4 * 2)})`,
+          [theme.breakpoints.down("sm")]: {
+            width: `calc(100vw - ${theme.spacing(3 * 2)})`,
+          },
+        }}
+      >
+        <Box display="flex" className="swiper-wrapper">
+          {items.map((item, i) => (
+            <Box
+              key={i}
+              className="swiper-slide"
+              sx={{ display: "flex", alignItems: "center", ...slideSx }}
+            >
+              <Box flex="1">{item}</Box>
+            </Box>
+          ))}
+        </Box>
       </Box>
-
-      {/* If you have navigation buttons */}
-      <IconButton
-        color="secondary"
-        className="swiper-button-prev"
-        sx={{ bottom: 0 }}
-      >
-        <ChevronLeftIcon />
-      </IconButton>
-      <IconButton
-        color="secondary"
-        className="swiper-button-next"
-        sx={{ bottom: 0 }}
-      >
-        <ChevronRightIcon />
-      </IconButton>
-
-      {/* If you have pagination */}
-      {/* <div className="swiper-pagination"></div> */}
-    </Box>
+      <Box display="flex" justifyContent="space-between">
+        <IconButton
+          size="large"
+          color="secondary"
+          className="swiper-button-prev"
+          sx={{
+            bottom: 0,
+            opacity: 1,
+            transition: "opacity 0.2s",
+            "&.swiper-button-disabled": {
+              opacity: 0,
+            },
+          }}
+        >
+          <ChevronLeftIcon />
+        </IconButton>
+        <Box
+          className="swiper-pagination"
+          sx={{
+            flex: 1,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            "& .swiper-pagination-bullet": {
+              background: theme.palette.common.white,
+              height: theme.spacing(1),
+              width: theme.spacing(1),
+              display: "block",
+              margin: theme.spacing(0, 1),
+              opacity: 0.8,
+              borderRadius: theme.spacing(0.5),
+              transition: "all 0.2s",
+              "&.swiper-pagination-bullet-active": {
+                height: theme.spacing(2),
+                width: theme.spacing(2),
+                opacity: 1,
+                borderRadius: theme.spacing(1),
+              },
+            },
+          }}
+        ></Box>
+        <IconButton
+          size="large"
+          color="secondary"
+          className="swiper-button-next"
+          sx={{
+            bottom: 0,
+            opacity: 1,
+            transition: "opacity 0.2s",
+            "&.swiper-button-disabled": {
+              opacity: 0,
+            },
+          }}
+        >
+          <ChevronRightIcon />
+        </IconButton>
+      </Box>
+    </>
   );
 };
