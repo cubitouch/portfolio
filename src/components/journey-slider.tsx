@@ -112,10 +112,13 @@ export const JourneySlider = () => {
       <Box
         gap={4}
         display="grid"
-        gridTemplateColumns="repeat(2, min-content)"
         gridAutoRows="auto"
         sx={{
           alignSelf: "self-end",
+          gridTemplateColumns: "repeat(2, min-content)",
+          [theme.breakpoints.up("md")]: {
+            gridTemplateColumns: "repeat(4, 1fr)",
+          },
           [theme.breakpoints.down("sm")]: {
             alignSelf: "self-start",
           },
