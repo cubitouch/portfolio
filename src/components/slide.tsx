@@ -37,6 +37,13 @@ export const Slide = ({
         minHeight: `calc(100dvh - ${
           background ? 0 : NAVBAR_HEIGHT
         }px - ${theme.spacing(hint ? 8 : 16)})`,
+        [theme.breakpoints.down("sm")]: {
+          padding: theme.spacing(4, 0),
+          paddingBottom: hint ? 0 : theme.spacing(4),
+          minHeight: `calc(100dvh - ${
+            background ? 0 : NAVBAR_HEIGHT
+          }px - ${theme.spacing(hint ? 4 : 8)})`,
+        },
         background: background
           ? "none"
           : light

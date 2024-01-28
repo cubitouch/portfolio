@@ -28,7 +28,22 @@ export const lightTheme = createTheme({
       fontFamily: "'Paytone One', sans-serif",
       letterSpacing: "0.02em",
       [baseTheme.breakpoints.down("md")]: {
-        fontSize: "3rem",
+        fontSize: "3em",
+      },
+    },
+    h2: {
+      [baseTheme.breakpoints.down("sm")]: {
+        fontSize: "2em",
+      },
+    },
+    h3: {
+      [baseTheme.breakpoints.down("sm")]: {
+        fontSize: "1.5em",
+      },
+    },
+    h4: {
+      [baseTheme.breakpoints.down("sm")]: {
+        fontSize: "1.5em",
       },
     },
   },

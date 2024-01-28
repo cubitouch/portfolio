@@ -108,121 +108,155 @@ const journeyItems = [
 export const JourneySlider = () => {
   const theme = useTheme();
   return (
-    <SwiperWrapper
-      slideSx={{
-        "& .annotation": {
-          transform: "none",
-          opacity: 1,
-          transition: "opacity 0.5s ease-in-out, transform 0.5s ease-in-out",
-        },
-        "&.swiper-slide-prev .annotation": {
-          opacity: 0,
-          "&.top": {
-            transform: "translateY(+100%)",
+    <>
+      <Box
+        gap={4}
+        display="grid"
+        gridTemplateColumns="repeat(2, min-content)"
+        gridAutoRows="auto"
+        sx={{
+          alignSelf: "self-end",
+          [theme.breakpoints.down("sm")]: {
+            alignSelf: "self-start",
           },
-          "&.bottom": {
-            transform: "translateY(-100%)",
+        }}
+      >
+        <Typography variant="h4">
+          13
+          <br />
+          Years
+        </Typography>
+        <Typography variant="h4">
+          9<br />
+          Companies
+        </Typography>
+        <Typography variant="h4">
+          {journeyItems.length}+<br />
+          Industries
+        </Typography>
+        <Typography variant="h4">
+          2<br />
+          Countries
+        </Typography>
+      </Box>
+      <SwiperWrapper
+        slideSx={{
+          "& .annotation": {
+            transform: "none",
+            opacity: 1,
+            transition: "opacity 0.5s ease-in-out, transform 0.5s ease-in-out",
           },
-        },
-      }}
-      items={journeyItems.map((item) => (
-        <>
-          <Box
-            className="annotation top"
-            sx={{
-              display: "flex",
-              textAlignLast: "start",
-              alignItems: "flex-end",
-              "&::before": {
-                content: "''",
-                display: "inline-block",
-                height: theme.spacing(2),
-                width: theme.spacing(4),
-                marginLeft: theme.spacing(3),
-                marginRight: theme.spacing(1),
-                borderTop: `1px dashed ${theme.palette.secondary.main}`,
-                borderLeft: `1px dashed ${theme.palette.secondary.main}`,
-              },
-            }}
-          >
-            <Typography
-              variant="overline"
+          "&.swiper-slide-prev .annotation": {
+            opacity: 0,
+            "&.top": {
+              transform: "translateY(+100%)",
+            },
+            "&.bottom": {
+              transform: "translateY(-100%)",
+            },
+          },
+        }}
+        items={journeyItems.map((item) => (
+          <>
+            <Box
+              className="annotation top"
               sx={{
-                flex: 1,
-                right: theme.spacing(8),
-                bottom: -24,
-                color: theme.palette.common.white,
+                display: "flex",
+                textAlignLast: "start",
+                alignItems: "flex-end",
+                "&::before": {
+                  content: "''",
+                  display: "inline-block",
+                  height: theme.spacing(2),
+                  width: theme.spacing(4),
+                  marginLeft: theme.spacing(3),
+                  marginRight: theme.spacing(1),
+                  borderTop: `1px dashed ${theme.palette.secondary.main}`,
+                  borderLeft: `1px dashed ${theme.palette.secondary.main}`,
+                },
               }}
             >
-              {item.companyTopology}
-            </Typography>
-          </Box>
-          <Card
-            sx={{
-              flex: 1,
-              borderTopLeftRadius: theme.spacing(1),
-              borderTopRightRadius: theme.spacing(1),
-              borderBottomLeftRadius: theme.spacing(1),
-            }}
-          >
-            <CardContent
-              sx={{ display: "flex", justifyContent: "space-between" }}
+              <Typography
+                variant="overline"
+                sx={{
+                  flex: 1,
+                  right: theme.spacing(8),
+                  bottom: -24,
+                  color: theme.palette.common.white,
+                }}
+              >
+                {item.companyTopology}
+              </Typography>
+            </Box>
+            <Card
+              sx={{
+                flex: 1,
+                borderTopLeftRadius: theme.spacing(1),
+                borderTopRightRadius: theme.spacing(1),
+                borderBottomLeftRadius: theme.spacing(1),
+              }}
             >
-              <Box>
-                <Typography variant="h4">{item.industry}</Typography>
-                <Typography variant="h5">{item.technology}</Typography>
-              </Box>
-              <Box>
-                <Box
-                  display="flex"
-                  flexDirection="row"
-                  gap={1}
-                  alignItems="center"
-                >
-                  <Avatar sx={{ backgroundColor: theme.palette.primary.main }}>
-                    {item.companyIcon}
-                  </Avatar>
+              <CardContent
+                sx={{ display: "flex", justifyContent: "space-between" }}
+              >
+                <Box>
+                  <Typography variant="h4">{item.industry}</Typography>
+                  <Typography variant="h5">{item.technology}</Typography>
                 </Box>
-              </Box>
-            </CardContent>
-            <Divider sx={{ borderStyle: "dashed" }} />
-            <CardContent sx={{ position: "relative" }}>
-              <Box textAlign="right">
-                <Typography variant="h6">{item.time}</Typography>
-              </Box>
-            </CardContent>
-          </Card>
-          <Box
-            className="annotation bottom"
-            sx={{
-              display: "flex",
-              textAlignLast: "end",
-              "&::after": {
-                content: "''",
-                display: "inline-block",
-                height: theme.spacing(2),
-                width: theme.spacing(4),
-                marginLeft: theme.spacing(1),
-                marginRight: theme.spacing(3),
-                borderBottom: `1px dashed ${theme.palette.secondary.main}`,
-                borderRight: `1px dashed ${theme.palette.secondary.main}`,
-              },
-            }}
-          >
-            <Typography
-              variant="overline"
+                <Box>
+                  <Box
+                    display="flex"
+                    flexDirection="row"
+                    gap={1}
+                    alignItems="center"
+                  >
+                    <Avatar
+                      sx={{ backgroundColor: theme.palette.primary.main }}
+                    >
+                      {item.companyIcon}
+                    </Avatar>
+                  </Box>
+                </Box>
+              </CardContent>
+              <Divider sx={{ borderStyle: "dashed" }} />
+              <CardContent sx={{ position: "relative" }}>
+                <Box textAlign="right">
+                  <Typography variant="h6">{item.time}</Typography>
+                </Box>
+              </CardContent>
+            </Card>
+            <Box
+              className="annotation bottom"
               sx={{
-                flex: 1,
-                right: theme.spacing(8),
-                bottom: -24,
-                color: theme.palette.common.white,
+                display: "flex",
+                textAlignLast: "end",
+                "&::after": {
+                  content: "''",
+                  display: "inline-block",
+                  height: theme.spacing(2),
+                  width: theme.spacing(4),
+                  marginLeft: theme.spacing(1),
+                  marginRight: theme.spacing(3),
+                  borderBottom: `1px dashed ${theme.palette.secondary.main}`,
+                  borderRight: `1px dashed ${theme.palette.secondary.main}`,
+                },
               }}
             >
-              {item.duration}
-            </Typography>
-          </Box>
-        </>
-      ))}
-    />
+              <Typography
+                variant="overline"
+                sx={{
+                  flex: 1,
+                  right: theme.spacing(8),
+                  bottom: -24,
+                  color: theme.palette.common.white,
+                }}
+              >
+                {item.duration}
+              </Typography>
+            </Box>
+          </>
+        ))}
+      />
+    </>
   );
 };
