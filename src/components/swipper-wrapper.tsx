@@ -46,6 +46,7 @@ export const SwiperWrapper = ({ items, slideSx }: SwiperWrapper) => {
         },
         pagination: {
           el: ".swiper-pagination",
+          clickable: true,
         },
       });
     }
@@ -105,19 +106,31 @@ export const SwiperWrapper = ({ items, slideSx }: SwiperWrapper) => {
             alignItems: "center",
             justifyContent: "center",
             "& .swiper-pagination-bullet": {
+              cursor: "pointer",
               background: theme.palette.common.white,
+              display: "block",
               height: theme.spacing(1),
               width: theme.spacing(1),
-              display: "block",
               margin: theme.spacing(0, 1),
+              [theme.breakpoints.down("sm")]: {
+                height: theme.spacing(0.8),
+                width: theme.spacing(0.8),
+                margin: theme.spacing(0, 0.6),
+              },
               opacity: 0.8,
               borderRadius: theme.spacing(0.5),
               transition: "all 0.2s",
               "&.swiper-pagination-bullet-active": {
+                cursor: "default",
+                opacity: 1,
                 height: theme.spacing(2),
                 width: theme.spacing(2),
-                opacity: 1,
                 borderRadius: theme.spacing(1),
+                [theme.breakpoints.down("sm")]: {
+                  height: theme.spacing(1.5),
+                  width: theme.spacing(1.5),
+                  borderRadius: theme.spacing(1.5),
+                },
               },
             },
           }}
