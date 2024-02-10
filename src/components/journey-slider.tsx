@@ -10,8 +10,6 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import dashedBorderBackgroundLight from "../assets/dashed-border-background-light.svg";
-import dashedBorderBackground from "../assets/dashed-border-background.svg";
 import { SwiperWrapper } from "../components/swipper-wrapper";
 
 const journeyItems = [
@@ -181,7 +179,7 @@ export const JourneySlider = () => {
                   marginRight: theme.spacing(1),
                   "&::after": {
                     content: "''",
-                    backgroundImage: `url(${dashedBorderBackgroundLight})`,
+                    backgroundImage: `url(dashed-border-background-light.svg)`,
                     display: "block",
                     height: 17,
                     width: 40,
@@ -234,7 +232,7 @@ export const JourneySlider = () => {
                 sx={{
                   "&::after": {
                     content: "''",
-                    backgroundImage: `url(${dashedBorderBackground})`,
+                    backgroundImage: `url(dashed-border-background.svg)`,
                     display: "block",
                     height: "2px",
                     width: "100%",
@@ -277,7 +275,7 @@ export const JourneySlider = () => {
                   marginRight: theme.spacing(3),
                   "&::after": {
                     content: "''",
-                    backgroundImage: `url(${dashedBorderBackgroundLight})`,
+                    backgroundImage: `url(dashed-border-background-light.svg)`,
                     display: "block",
                     height: 17,
                     width: 40,
