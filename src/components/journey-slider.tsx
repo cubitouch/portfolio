@@ -10,6 +10,8 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
+import dashedBorderBackgroundLight from "../assets/dashed-border-background-light.svg";
+import dashedBorderBackground from "../assets/dashed-border-background.svg";
 import { SwiperWrapper } from "../components/swipper-wrapper";
 
 const journeyItems = [
@@ -168,18 +170,24 @@ export const JourneySlider = () => {
                 display: "flex",
                 textAlignLast: "start",
                 alignItems: "flex-end",
-                "&::before": {
-                  content: "''",
-                  display: "inline-block",
-                  height: theme.spacing(2),
-                  width: theme.spacing(4),
-                  marginLeft: theme.spacing(3),
-                  marginRight: theme.spacing(1),
-                  borderTop: `1px dashed ${theme.palette.secondary.main}`,
-                  borderLeft: `1px dashed ${theme.palette.secondary.main}`,
-                },
               }}
             >
+              <Box
+                sx={{
+                  height: 16,
+                  width: 39,
+                  overflow: "hidden",
+                  marginLeft: theme.spacing(3),
+                  marginRight: theme.spacing(1),
+                  "&::after": {
+                    content: "''",
+                    backgroundImage: `url(${dashedBorderBackgroundLight})`,
+                    display: "block",
+                    height: 17,
+                    width: 40,
+                  },
+                }}
+              />
               <Typography
                 variant="overline"
                 sx={{
@@ -222,7 +230,20 @@ export const JourneySlider = () => {
                   </Box>
                 </Box>
               </CardContent>
-              <Divider sx={{ borderStyle: "dashed" }} />
+              <Divider
+                sx={{
+                  "&::after": {
+                    content: "''",
+                    backgroundImage: `url(${dashedBorderBackground})`,
+                    display: "block",
+                    height: "2px",
+                    width: "100%",
+                  },
+                  height: "1px",
+                  overflow: "hidden",
+                  border: "none",
+                }}
+              />
               <CardContent sx={{ position: "relative" }}>
                 <Box textAlign="right">
                   <Typography variant="h6">{item.time}</Typography>
@@ -234,16 +255,6 @@ export const JourneySlider = () => {
               sx={{
                 display: "flex",
                 textAlignLast: "end",
-                "&::after": {
-                  content: "''",
-                  display: "inline-block",
-                  height: theme.spacing(2),
-                  width: theme.spacing(4),
-                  marginLeft: theme.spacing(1),
-                  marginRight: theme.spacing(3),
-                  borderBottom: `1px dashed ${theme.palette.secondary.main}`,
-                  borderRight: `1px dashed ${theme.palette.secondary.main}`,
-                },
               }}
             >
               <Typography
@@ -257,6 +268,24 @@ export const JourneySlider = () => {
               >
                 {item.duration}
               </Typography>
+              <Box
+                sx={{
+                  height: 16,
+                  width: 39,
+                  overflow: "hidden",
+                  marginLeft: theme.spacing(1),
+                  marginRight: theme.spacing(3),
+                  "&::after": {
+                    content: "''",
+                    backgroundImage: `url(${dashedBorderBackgroundLight})`,
+                    display: "block",
+                    height: 17,
+                    width: 40,
+                    marginTop: "-1px",
+                    marginLeft: "-1px",
+                  },
+                }}
+              />
             </Box>
           </>
         ))}

@@ -43,7 +43,12 @@ export const lightTheme = createTheme({
     },
     h4: {
       [baseTheme.breakpoints.down("sm")]: {
-        fontSize: "1.5em",
+        fontSize: "1.2em",
+      },
+    },
+    h5: {
+      [baseTheme.breakpoints.down("sm")]: {
+        fontSize: "1em",
       },
     },
   },
