@@ -20,7 +20,9 @@ const palette = {
 
 export const lightTheme = createTheme({
   palette,
+  
   typography: {
+    fontFamily: "Titillium Web, sans-serif",
     allVariants: {
       fontFamily: "Titillium Web, sans-serif",
     },
