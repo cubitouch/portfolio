@@ -110,7 +110,11 @@ export const HomePage = () => {
                 scales: {
                   r: {
                     angleLines: {
+                      color: `${theme.palette.primary.main}40`,
                       borderDash: [6, 8],
+                    },
+                    grid: {
+                      color: `${theme.palette.primary.main}40`,
                     },
                     border: { dash: [6, 8] },
                     beginAtZero: true,
