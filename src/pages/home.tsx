@@ -2,6 +2,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import { Box, IconButton, Stack, Typography, useTheme } from "@mui/material";
 import "chart.js/auto";
+import { RadialLinearScaleOptions } from "chart.js/auto";
 import { useState } from "react";
 import { Radar } from "react-chartjs-2";
 import { TypeAnimation } from "react-type-animation";
@@ -125,7 +126,10 @@ export const HomePage = () => {
                       },
                       padding: 8,
                     },
-                  } as any,
+                  } as RadialLinearScaleOptions & {
+                    // https://github.com/chartjs/Chart.js/issues/11661
+                    border: { dash: number[] };
+                  },
                 },
                 plugins: {
                   legend: {
