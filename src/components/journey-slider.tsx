@@ -110,7 +110,7 @@ export const JourneySlider = () => {
   return (
     <>
       <Box
-        gap={4}
+        gap={{ xs: 3, md: 4 }}
         display="grid"
         gridAutoRows="auto"
         sx={{
@@ -125,21 +125,22 @@ export const JourneySlider = () => {
         }}
       >
         <Typography variant="h4">
-          13
+          10+
           <br />
-          Years
-        </Typography>
-        <Typography variant="h4">
-          9<br />
-          Companies
-        </Typography>
-        <Typography variant="h4">
-          {journeyItems.length}+<br />
           Industries
+        </Typography>
+        <Typography variant="h4">
+          4<br />
+          Publications
         </Typography>
         <Typography variant="h4">
           2<br />
           Countries
+        </Typography>
+        <Typography variant="h4">
+          13
+          <br />
+          Years
         </Typography>
       </Box>
       <SwiperWrapper
