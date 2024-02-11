@@ -6,6 +6,7 @@ import { useState } from "react";
 import { TypeAnimation } from "react-type-animation";
 import ScrollSpy from "react-ui-scrollspy";
 import topSlideBackground from "../assets/blanca-paloma-sanchez-AvfTRF9QINM-unsplash-min.jpg";
+import { FancyLoader } from "../components/fancy-loader";
 import { HintButton } from "../components/hint-button";
 import { JourneySlider } from "../components/journey-slider";
 import { NavBar } from "../components/nav-bar";
@@ -80,25 +81,40 @@ export const HomePage = () => {
         </Slide>
 
         <Slide dark primary={"What else?"} id="more">
-          <Box flex="1" />
-          <Stack direction="row" spacing={2} justifyContent="flex-end">
-            <IconButton
-              size="large"
-              color="secondary"
-              href="https://github.com/cubitouch/portfolio"
-              target="_blank"
-            >
-              <GitHubIcon fontSize="large" />
-            </IconButton>
-            <IconButton
-              size="large"
-              color="secondary"
-              href="https://www.linkedin.com/in/hugo-carnicelli"
-              target="_blank"
-            >
-              <LinkedInIcon fontSize="large" />
-            </IconButton>
-          </Stack>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flex: 1,
+            }}
+          >
+            <FancyLoader />
+          </Box>
+          <Box display="flex" flexDirection="row" alignItems="center">
+            <Typography variant="caption" flex="1">
+              * Nothing is actually loading, I just wanted to make a fancy
+              loader. Come back later?
+            </Typography>
+            <Stack direction="row" spacing={2} justifyContent="flex-end">
+              <IconButton
+                size="large"
+                color="secondary"
+                href="https://github.com/cubitouch/portfolio"
+                target="_blank"
+              >
+                <GitHubIcon fontSize="large" />
+              </IconButton>
+              <IconButton
+                size="large"
+                color="secondary"
+                href="https://www.linkedin.com/in/hugo-carnicelli"
+                target="_blank"
+              >
+                <LinkedInIcon fontSize="large" />
+              </IconButton>
+            </Stack>
+          </Box>
         </Slide>
       </ScrollSpy>
     </>
