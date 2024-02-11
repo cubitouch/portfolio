@@ -30,6 +30,7 @@ export const FancyLoader = () => {
     <Box
       sx={{
         fontSize: 100,
+        position: "relative",
       }}
     >
       <Box
