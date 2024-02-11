@@ -3,11 +3,17 @@ import Logo from "../assets/logo.svg?react";
 
 const appearingLogo = keyframes`
     0% {
-        clip-path: inset(0 87% 0 13%); /* Hidden, but centered */
+        clip-path: circle(0% at 12.8% 46%); /* Hidden, but centered */
         margin-left: 140px;
     }
     5% {
-        clip-path: inset(0 82% 0 8%); /* Start with the dot */
+        clip-path: circle(0% at 12.8% 46%); /* Stay hidden */
+    }
+    6% {
+        clip-path: circle(4% at 12.8% 46%); /* Start with the dot */
+    }
+    10% {
+        clip-path: inset(0 82% 0 8%); /* Dot full height */
     }
     15% {
         clip-path: inset(0 74% 0 0); /* Reveal up to the 'H' */
@@ -42,7 +48,7 @@ export const FancyLoader = () => {
           "& #logo": {
             animation: `${appearingLogo} 10s ease infinite`,
             transition: "all 0.5s ease",
-            // clipPath: "inset(0 74% 0 0)",
+            // clipPath: "inset(38% 82% 48% 8%)",
             // marginLeft: "140px",
           },
         }}
@@ -54,7 +60,7 @@ export const FancyLoader = () => {
         color="inherit"
         size={260}
         thickness={1}
-        sx={{ opacity: 0.8 }}
+        sx={{ opacity: 0.6 }}
       />
     </Box>
   );
