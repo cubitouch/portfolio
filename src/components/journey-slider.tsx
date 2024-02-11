@@ -173,7 +173,7 @@ export const JourneySlider = () => {
               <Box
                 sx={{
                   height: 16,
-                  width: 39,
+                  width: 40,
                   overflow: "hidden",
                   marginLeft: theme.spacing(3),
                   marginRight: theme.spacing(1),
@@ -181,8 +181,8 @@ export const JourneySlider = () => {
                     content: "''",
                     backgroundImage: `url(dashed-border-background-light.svg)`,
                     display: "block",
-                    height: 17,
-                    width: 40,
+                    height: 18,
+                    width: 42,
                   },
                 }}
               />
@@ -269,7 +269,7 @@ export const JourneySlider = () => {
               <Box
                 sx={{
                   height: 16,
-                  width: 39,
+                  width: 40,
                   overflow: "hidden",
                   marginLeft: theme.spacing(1),
                   marginRight: theme.spacing(3),
@@ -277,10 +277,10 @@ export const JourneySlider = () => {
                     content: "''",
                     backgroundImage: `url(dashed-border-background-light.svg)`,
                     display: "block",
-                    height: 17,
-                    width: 40,
-                    marginTop: "-1px",
-                    marginLeft: "-1px",
+                    height: 18,
+                    width: 42,
+                    marginTop: "-2px",
+                    marginLeft: "-2px",
                   },
                 }}
               />
