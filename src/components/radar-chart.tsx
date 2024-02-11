@@ -103,9 +103,9 @@ export const RadarChart = () => {
             "Design",
             "Software",
             "Infrastructure",
-            "CI/CD",
+            "Continuous Delivery",
             "Data",
-          ],
+          ].map((label) => label.split(" ")),
         }}
       />
     </Box>
