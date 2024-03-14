@@ -20,7 +20,7 @@ const palette = {
 
 export const lightTheme = createTheme({
   palette,
-  
+
   typography: {
     fontFamily: "Titillium Web, sans-serif",
     allVariants: {
@@ -99,6 +99,14 @@ export const lightTheme = createTheme({
               transform: "scaleX(1) translateY(0)",
             },
           },
+        },
+      },
+    },
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          color: "inherit",
+          textDecoration: "underline",
         },
       },
     },

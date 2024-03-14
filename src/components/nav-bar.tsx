@@ -1,13 +1,17 @@
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {
   AppBar,
   Box,
+  Fab,
   Stack,
   Tab,
   Tabs,
   Toolbar,
   Typography,
+  useTheme,
 } from "@mui/material";
 
+import { useNavigate } from "react-router-dom";
 import Logo from "../assets/logo.svg?react";
 
 interface NavBarProps {
@@ -52,5 +56,35 @@ export const NavBar = ({
         </Stack>
       </Toolbar>
     </AppBar>
+  );
+};
+
+export const SimpleNavBar = () => {
+  const navigate = useNavigate();
+  const theme = useTheme();
+  return (
+    <>
+      <AppBar sx={{ height: 64 }}>
+        <Toolbar>
+          <Box
+            onClick={() => navigate("/")}
+            display="flex"
+            gap={1}
+            sx={{ cursor: "pointer" }}
+          >
+            <Logo fontSize={32} />
+          </Box>
+        </Toolbar>
+      </AppBar>
+      <Fab
+        sx={{
+          position: "fixed",
+          bottom: theme.spacing(4),
+          right: theme.spacing(4),
+        }}
+      >
+        <ExpandMoreIcon />
+      </Fab>
+    </>
   );
 };

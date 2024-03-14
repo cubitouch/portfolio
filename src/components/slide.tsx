@@ -16,6 +16,7 @@ interface SlideProps {
   background?: string;
   id?: string;
   hint?: React.ReactNode;
+  first?: boolean;
 }
 export const Slide = ({
   children,
@@ -25,24 +26,28 @@ export const Slide = ({
   background,
   id,
   hint,
+  first,
 }: SlideProps) => {
   const theme = useTheme();
+  
+  const getSizings = (spacing: number) => ({
+    paddingTop: first
+      ? `calc(${NAVBAR_HEIGHT}px + ${theme.spacing(spacing)})`
+      : theme.spacing(spacing),
+    paddingBottom: hint ? 0 : theme.spacing(spacing),
+    minHeight: `calc(100dvh - ${
+      background ? 0 : NAVBAR_HEIGHT
+    }px - ${theme.spacing(hint ? spacing : spacing * 2)})`,
+  });
+
   return (
     <Paper
       id={id}
       sx={{
         display: "flex",
-        padding: theme.spacing(8, 0),
-        paddingBottom: hint ? 0 : theme.spacing(8),
-        minHeight: `calc(100dvh - ${
-          background ? 0 : NAVBAR_HEIGHT
-        }px - ${theme.spacing(hint ? 8 : 16)})`,
+        ...getSizings(8),
         [theme.breakpoints.down("sm")]: {
-          padding: theme.spacing(4, 0),
-          paddingBottom: hint ? 0 : theme.spacing(4),
-          minHeight: `calc(100dvh - ${
-            background ? 0 : NAVBAR_HEIGHT
-          }px - ${theme.spacing(hint ? 4 : 8)})`,
+          ...getSizings(4),
         },
         background: background
           ? "none"
