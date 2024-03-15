@@ -98,11 +98,11 @@ export const HomePage = () => {
           >
             <FancyLoader />
           </Box>
-          <Typography variant="h4" align="center">
+          {/* <Typography variant="h4" align="center">
             Check out{" "}
             <Link href="/paris-energy-performance-draft-analysis">this</Link>{" "}
             data analysis 🎉
-          </Typography>
+          </Typography> */}
           <Box display="flex" flexDirection="row" alignItems="center">
             <Typography variant="caption" flex="1">
               * Nothing is actually loading, I just wanted to build a fancy
