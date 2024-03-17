@@ -1,13 +1,6 @@
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import {
-  Box,
-  IconButton,
-  Link,
-  Stack,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Box, IconButton, Stack, Typography, useTheme } from "@mui/material";
 import "chart.js/auto";
 import { useState } from "react";
 import { TypeAnimation } from "react-type-animation";

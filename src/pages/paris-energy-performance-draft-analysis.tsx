@@ -1,9 +1,9 @@
 import { Box, alpha, useTheme } from "@mui/material";
+import { ChartOptions } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import { SimpleNavBar } from "../components/nav-bar";
 import { Slide } from "../components/slide";
 import monthlyReports from "./data/monthly_reports.json";
-import { ChartOptions } from "chart.js";
 
 export const ParisEnergyPerformanceDraftAnalysis = () => {
   const theme = useTheme();
@@ -12,9 +12,9 @@ export const ParisEnergyPerformanceDraftAnalysis = () => {
     labels: Object.keys(monthlyReports),
     datasets: [
       {
-        label: "Number of Reports",
+        label: "# Reports",
         data: Object.values(monthlyReports),
-        backgroundColor: alpha(theme.palette.common.white, 0.5),
+        backgroundColor: theme.palette.common.white,
         borderWidth: 0,
       },
     ],
@@ -31,10 +31,16 @@ export const ParisEnergyPerformanceDraftAnalysis = () => {
         grid: {
           color: alpha(theme.palette.common.white, 0.1),
         },
+        border: {
+          color: alpha(theme.palette.common.white, 0.1),
+        },
       },
       x: {
         ticks: {
           color: theme.palette.common.white,
+        },
+        border: {
+          color: alpha(theme.palette.common.white, 0.1),
         },
         grid: {
           display: false,
@@ -43,13 +49,7 @@ export const ParisEnergyPerformanceDraftAnalysis = () => {
     },
     plugins: {
       legend: {
-        labels: {
-          usePointStyle: true,
-          color: theme.palette.common.white,
-          font: {
-            family: theme.typography.fontFamily,
-          },
-        },
+        display: false,
       },
       tooltip: {
         titleFont: {
@@ -61,7 +61,7 @@ export const ParisEnergyPerformanceDraftAnalysis = () => {
         footerFont: {
           family: theme.typography.fontFamily,
         },
-        usePointStyle: true,
+        displayColors: false,
       },
     },
   };
@@ -72,7 +72,9 @@ export const ParisEnergyPerformanceDraftAnalysis = () => {
         <Box>test</Box>
       </Slide>
       <Slide dark primary={"Energy Performance Reports since June 2021"}>
-        <Bar data={chartData} options={options} />
+        <Box sx={{ maxHeight: "60dvh" }}>
+          <Bar data={chartData} options={options} />
+        </Box>
       </Slide>
     </>
   );
