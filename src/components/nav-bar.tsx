@@ -1,4 +1,3 @@
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {
   AppBar,
   Box,
@@ -11,6 +10,7 @@ import {
   useTheme,
 } from "@mui/material";
 
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import Logo from "../assets/logo.svg?react";
 
@@ -59,7 +59,10 @@ export const NavBar = ({
   );
 };
 
-export const SimpleNavBar = () => {
+interface SimpleNavBarProps {
+  actions?: { onClick: () => void; icon: React.ReactNode }[];
+}
+export const SimpleNavBar = ({ actions }: SimpleNavBarProps) => {
   const navigate = useNavigate();
   const theme = useTheme();
   return (
@@ -76,15 +79,21 @@ export const SimpleNavBar = () => {
           </Box>
         </Toolbar>
       </AppBar>
-      <Fab
+      <Box
         sx={{
           position: "fixed",
           bottom: theme.spacing(4),
           right: theme.spacing(4),
+          display: "flex",
+          flexDirection: "row",
+          gap: theme.spacing(2),
+          zIndex: 1,
         }}
       >
-        <ExpandMoreIcon />
-      </Fab>
+        {actions?.map((action, i) => (
+          <Fab onClick={action.onClick}>{action.icon}</Fab>
+        ))}
+      </Box>
     </>
   );
 };

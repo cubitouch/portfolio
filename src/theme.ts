@@ -107,6 +107,8 @@ export const lightTheme = createTheme({
         root: {
           color: "inherit",
           textDecoration: "underline",
+          fontFamily: "Titillium Web, sans-serif",
+          cursor: "pointer",
         },
       },
     },
