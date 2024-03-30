@@ -1,5 +1,6 @@
 import {
   Box,
+  Breakpoint,
   Container,
   Paper,
   Stack,
@@ -17,6 +18,7 @@ interface SlideProps {
   id?: string;
   hint?: React.ReactNode;
   first?: boolean;
+  maxWidth?: Breakpoint | false;
 }
 export const Slide = ({
   children,
@@ -27,9 +29,10 @@ export const Slide = ({
   id,
   hint,
   first,
+  maxWidth = false,
 }: SlideProps) => {
   const theme = useTheme();
-  
+
   const getSizings = (spacing: number) => ({
     paddingTop: first
       ? `calc(${NAVBAR_HEIGHT}px + ${theme.spacing(spacing)})`
@@ -78,7 +81,7 @@ export const Slide = ({
           : undefined,
       }}
     >
-      <Container maxWidth={false} sx={{ flex: 1, display: "flex" }}>
+      <Container maxWidth={maxWidth} sx={{ flex: 1, display: "flex" }}>
         <Stack spacing={hint ? 0 : 4} flex="1">
           {primary && (
             <Typography

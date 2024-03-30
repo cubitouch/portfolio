@@ -213,7 +213,7 @@ export const ParisEnergyPerformanceDraftAnalysis = () => {
           },
         ]}
       />
-      <Slide first light primary={"Energy Performance in Paris"}>
+      <Slide maxWidth="lg" first light primary={"Energy Performance in Paris"}>
         <Typography variant="h4">Problem</Typography>
         <Typography variant="body1">
           Where to search in Paris to find an energy efficient property to rent?
@@ -242,6 +242,7 @@ export const ParisEnergyPerformanceDraftAnalysis = () => {
         </Link>
       </Slide>
       <Slide
+        maxWidth="lg"
         dark
         primary={"How many Energy Performance reports since June 2021?"}
       >
@@ -256,7 +257,10 @@ export const ParisEnergyPerformanceDraftAnalysis = () => {
           2023 to September 2023? 🤔
         </Typography>
       </Slide>
-      <Slide primary={"Which postal codes have most A, B or C energy ratings?"}>
+      <Slide
+        maxWidth="lg"
+        primary={"Which postal codes have most A, B or C energy ratings?"}
+      >
         <ChartContainer>
           <Bar
             data={ratingsData}
@@ -275,7 +279,11 @@ export const ParisEnergyPerformanceDraftAnalysis = () => {
           ]}
         />
       </Slide>
-      <Slide dark primary={"How efficient are ground floor properties?"}>
+      <Slide
+        maxWidth="lg"
+        dark
+        primary={"How efficient are ground floor properties?"}
+      >
         <ChartContainer>
           <Bar
             data={emissionsData}
@@ -289,7 +297,10 @@ export const ParisEnergyPerformanceDraftAnalysis = () => {
           ]}
         />
       </Slide>
-      <Slide primary={"How efficient are ground floor properties?"}>
+      <Slide
+        maxWidth="lg"
+        primary={"How efficient are ground floor properties?"}
+      >
         <ChartContainer flex>
           <Heatmap data={ratingsPerEraData.data} />
         </ChartContainer>
@@ -300,7 +311,7 @@ export const ParisEnergyPerformanceDraftAnalysis = () => {
           ]}
         />
       </Slide>
-      <Slide primary={"Conclusions"}>
+      <Slide maxWidth="lg" primary={"Conclusions"}>
         <NotesList
           numbered
           list={[

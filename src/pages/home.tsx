@@ -1,6 +1,13 @@
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import { Box, IconButton, Stack, Typography, useTheme } from "@mui/material";
+import {
+  Box,
+  IconButton,
+  Link,
+  Stack,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import "chart.js/auto";
 import { useState } from "react";
 import { TypeAnimation } from "react-type-animation";
@@ -91,11 +98,11 @@ export const HomePage = () => {
           >
             <FancyLoader />
           </Box>
-          {/* <Typography variant="h4" align="center">
+          <Typography variant="h4" align="center">
             Check out{" "}
             <Link href="/paris-energy-performance-draft-analysis">this</Link>{" "}
             data analysis 🎉
-          </Typography> */}
+          </Typography>
           <Box display="flex" flexDirection="row" alignItems="center">
             <Typography variant="caption" flex="1">
               * Nothing is actually loading, I just wanted to build a fancy
