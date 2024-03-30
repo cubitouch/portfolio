@@ -90,8 +90,10 @@ export const SimpleNavBar = ({ actions }: SimpleNavBarProps) => {
           zIndex: 1,
         }}
       >
-        {actions?.map((action) => (
-          <Fab onClick={action.onClick}>{action.icon}</Fab>
+        {actions?.map((action, i) => (
+          <Fab key={i} onClick={action.onClick}>
+            {action.icon}
+          </Fab>
         ))}
       </Box>
     </>

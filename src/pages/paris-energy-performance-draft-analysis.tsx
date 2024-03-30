@@ -14,16 +14,19 @@ import {
 import { ChartOptions } from "chart.js";
 import { merge } from "chart.js/helpers";
 import { Bar } from "react-chartjs-2";
+import Heatmap from "../components/heatmap";
 import { SimpleNavBar } from "../components/nav-bar";
 import { Slide } from "../components/slide";
 import dpePerPostalCode from "./data/dpe_per_postal_code.json";
+import eraDpeRatios from "./data/era_dpe_ratios.json";
 import floorGesCounts from "./data/floor_ges_counts_filtered.json";
 import monthlyReports from "./data/monthly_reports.json";
 
 interface ChartContainerProps {
   children: React.ReactNode;
+  flex?: boolean;
 }
-const ChartContainer = ({ children }: ChartContainerProps) => {
+const ChartContainer = ({ children, flex }: ChartContainerProps) => {
   const theme = useTheme();
   return (
     <Box
@@ -33,6 +36,7 @@ const ChartContainer = ({ children }: ChartContainerProps) => {
           md: `calc(100dvw - ${theme.spacing(8)})`,
           sm: `calc(100dvw - ${theme.spacing(4)})`,
         },
+        display: flex ? "flex" : undefined,
       }}
     >
       {children}
@@ -49,7 +53,7 @@ const NotesList = ({ list, numbered }: NotesListProps) => {
   return (
     <List dense disablePadding>
       {list.map((item, index) => (
-        <ListItem disableGutters>
+        <ListItem disableGutters key={index}>
           {numbered && (
             <ListItemAvatar sx={{ minWidth: 32 }}>
               <Avatar
@@ -181,6 +185,20 @@ export const ParisEnergyPerformanceDraftAnalysis = () => {
       },
     },
   });
+
+  const eras = Object.keys(eraDpeRatios).reverse();
+  const dpeRatings = ["A", "B", "C", "D", "E", "F", "G"];
+  const ratingsPerEraData = {
+    label: "DPE Rating vs Construction Era",
+    data: eras.flatMap((era, y) => {
+      return dpeRatings.map((rating, x) => ({
+        x: dpeRatings[x],
+        y: eras[y],
+        value: (eraDpeRatios as any)[era][rating] || 0,
+      }));
+    }),
+  };
+
   return (
     <>
       <SimpleNavBar
@@ -267,9 +285,38 @@ export const ParisEnergyPerformanceDraftAnalysis = () => {
         <NotesList
           list={[
             "Note: There seem to be more well rated properties on the ground floor than on other floors. Especially for GES rating.",
-            "Assumption #3 - confirmed ✅",
+            "Assumption #3 - incorrect ❌",
           ]}
         />
+      </Slide>
+      <Slide primary={"How efficient are ground floor properties?"}>
+        <ChartContainer flex>
+          <Heatmap data={ratingsPerEraData.data} />
+        </ChartContainer>
+        <NotesList
+          list={[
+            "Notes: Properties built since 1983 have +20% C ratings, properties built between 2001 and 2021 offer an even higher amount C ratings ratio, and a growing amount of B ratings, properties built recently (since 2021) offer the best rating.",
+            "Assumption #4 - confirmed ✅",
+          ]}
+        />
+      </Slide>
+      <Slide primary={"Conclusions"}>
+        <NotesList
+          numbered
+          list={[
+            "❌ Paris has few well rated properties,",
+            "✅ 75019, 75013 and 75018 are more efficient,",
+            "❌ Ground floor flats are actually more efficient,",
+            "✅ Recent constructions are usually more efficient.",
+          ]}
+        />
+        <Typography variant="body1">
+          Further analysis: Can we represent a corelation of assumptions #2 and
+          #4 via a construction era breakdown per postal codes? This would
+          re-enforce assumption #2 findings, if 75019, 75013 and 75018 postal
+          codes have higher amount of properties built since 1982 and/or since
+          2001, compared to other postal codes.
+        </Typography>
       </Slide>
     </>
   );
