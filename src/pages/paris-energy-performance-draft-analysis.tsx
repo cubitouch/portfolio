@@ -2,6 +2,7 @@ import InsightsIcon from "@mui/icons-material/Insights";
 import {
   Avatar,
   Box,
+  Button,
   Link,
   List,
   ListItem,
@@ -201,18 +202,7 @@ export const ParisEnergyPerformanceDraftAnalysis = () => {
 
   return (
     <>
-      <SimpleNavBar
-        actions={[
-          {
-            onClick: () =>
-              window.open(
-                "https://colab.research.google.com/drive/1L-K23XB9Alm94My2JKvLrTilHC-6S7r0?usp=sharing",
-                "_blank"
-              ),
-            icon: <InsightsIcon />,
-          },
-        ]}
-      />
+      <SimpleNavBar />
       <Slide maxWidth="lg" first light primary={"Energy Performance in Paris"}>
         <Typography variant="h4">Problem</Typography>
         <Typography variant="body1">
@@ -328,6 +318,18 @@ export const ParisEnergyPerformanceDraftAnalysis = () => {
           codes have higher amount of properties built since 1982 and/or since
           2001, compared to other postal codes.
         </Typography>
+
+        <Button
+          startIcon={<InsightsIcon />}
+          onClick={() =>
+            window.open(
+              "https://colab.research.google.com/drive/1L-K23XB9Alm94My2JKvLrTilHC-6S7r0?usp=sharing",
+              "_blank"
+            )
+          }
+        >
+          See how I explored this on Colab
+        </Button>
       </Slide>
     </>
   );
