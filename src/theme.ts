@@ -1,4 +1,4 @@
-import { ThemeOptions, createTheme } from "@mui/material";
+import { type ThemeOptions, createTheme } from "@mui/material";
 import { NAVBAR_HEIGHT } from "./constants";
 
 const baseTheme = createTheme();

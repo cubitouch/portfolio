@@ -1,6 +1,7 @@
-import react from "@vitejs/plugin-react-swc";
+import { reactRouter } from "@react-router/dev/vite";
 import { defineConfig } from "vite";
 import svgr from "vite-plugin-svgr";
+import tsconfigPaths from "vite-tsconfig-paths";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -8,5 +9,5 @@ export default defineConfig({
     host: true,
     port: 3000,
   },
-  plugins: [react(), svgr()],
+  plugins: [reactRouter(), svgr(), tsconfigPaths()],
 });

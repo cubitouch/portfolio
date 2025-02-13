@@ -1,6 +1,12 @@
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { Box, IconButton, SxProps, Theme, useTheme } from "@mui/material";
+import {
+  Box,
+  IconButton,
+  useTheme,
+  type SxProps,
+  type Theme,
+} from "@mui/material";
 import { useEffect, useRef } from "react";
 import Swiper, { Swiper as SwiperClass } from "swiper/bundle";
 import "swiper/css";

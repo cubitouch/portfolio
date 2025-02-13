@@ -1,3 +1,4 @@
+import type { Route } from "./+types/home";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import {
@@ -23,7 +24,7 @@ import { NAVBAR_HEIGHT } from "../constants";
 
 export const HOME_ID = "top";
 
-export const HomePage = () => {
+const HomePage = () => {
   const theme = useTheme();
   const [currentSection, setCurentSection] = useState(HOME_ID);
   const scrollTo = (id: string) => {
@@ -100,7 +101,12 @@ export const HomePage = () => {
           </Box>
           <Typography variant="h4" align="center">
             Check out my new data app{" "}
-            <Link href="https://energy-data-exploration.vercel.app" target="_blank">here</Link>{" "}
+            <Link
+              href="https://energy-data-exploration.vercel.app"
+              target="_blank"
+            >
+              here
+            </Link>{" "}
             🎉
             <br />
             <small>
@@ -136,3 +142,10 @@ export const HomePage = () => {
     </>
   );
 };
+
+export function meta({}: Route.MetaArgs) {
+  return [{ title: "Hugo Carnicelli - Software Engineer" }];
+}
+export default function Home() {
+  return <HomePage />;
+}

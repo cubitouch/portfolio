@@ -1,11 +1,11 @@
 import {
   Box,
-  Breakpoint,
   Container,
   Paper,
   Stack,
   Typography,
   useTheme,
+  type Breakpoint,
 } from "@mui/material";
 import { NAVBAR_HEIGHT } from "../constants";
 
