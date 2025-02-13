@@ -1,6 +1,6 @@
 /// <reference types="vite-plugin-svgr/client" />
 import { ThemeProvider } from "@mui/material";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router";
 import "./App.css";
 import { HomePage } from "./pages/home";
 import { lightTheme } from "./theme";

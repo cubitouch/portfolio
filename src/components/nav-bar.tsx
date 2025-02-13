@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import Logo from "../assets/logo.svg?react";
 
 interface NavBarProps {
