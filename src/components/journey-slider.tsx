@@ -99,7 +99,7 @@ const journeyItems = [
     time: "February 2022",
     companyIcon: <RocketLaunchIcon />,
     companyTopology: "Startup",
-    duration: "2 years (present)",
+    duration: "2.5 years",
     industry: "Climate Tech",
     technology: "Internet of Things",
   },
@@ -138,7 +138,7 @@ export const JourneySlider = () => {
           Countries
         </Typography>
         <Typography variant="h4">
-          13
+          14
           <br />
           Years
         </Typography>
