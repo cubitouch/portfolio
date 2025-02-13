@@ -100,7 +100,7 @@ export const HomePage = () => {
           </Box>
           <Typography variant="h4" align="center">
             Check out my new data app{" "}
-            <Link href="https://energy-data-exploration.vercel.app">here</Link>{" "}
+            <Link href="https://energy-data-exploration.vercel.app" target="_blank">here</Link>{" "}
             🎉
             <br />
             <small>
