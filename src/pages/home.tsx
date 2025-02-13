@@ -99,9 +99,13 @@ export const HomePage = () => {
             <FancyLoader />
           </Box>
           <Typography variant="h4" align="center">
-            Check out{" "}
-            <Link href="/paris-energy-performance-draft-analysis">this</Link>{" "}
-            data analysis 🎉
+            Check out my new data app{" "}
+            <Link href="https://energy-data-exploration.vercel.app">here</Link>{" "}
+            🎉
+            <br />
+            <small>
+              Built to visually explore French energy open datasets!
+            </small>
           </Typography>
           <Box display="flex" flexDirection="row" alignItems="center">
             <Typography variant="caption" flex="1">
