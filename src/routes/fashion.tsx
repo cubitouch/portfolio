@@ -1,9 +1,14 @@
 import { Box } from "@mui/material";
+import MapView from "~/components/map-view";
 import type { Route } from "./+types/fashion";
 
 export function meta({}: Route.MetaArgs) {
   return [{ title: "Men Sustainable Fashion Shops" }];
 }
 export default function Fashion() {
-  return <Box sx={{}}></Box>;
+  return (
+    <Box sx={{}}>
+      <MapView />
+    </Box>
+  );
 }
