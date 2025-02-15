@@ -2,7 +2,7 @@ import { Box, useTheme } from "@mui/material";
 import "leaflet/dist/leaflet.css";
 import { useEffect, useRef, useState } from "react";
 import { renderToString } from "react-dom/server";
-import CustomMarkerIcon from "../assets/logo-monogram.svg?react"; // SVG as React component
+import CustomMarkerIcon from "../../assets/logo-monogram.svg?react"; // SVG as React component
 
 interface Record {
   id: string;
