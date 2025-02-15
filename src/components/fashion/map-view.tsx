@@ -136,7 +136,10 @@ const MapView = () => {
       iconAnchor: [10, 16], // Adjust for alignment
       popupAnchor: [0, -16],
     });
-
+  const parisBounds: [[number, number], [number, number]] = [
+    [48.8064, 2.2241], // Southwest corner (near Issy-les-Moulineaux)
+    [48.9021, 2.4699], // Northeast corner (near Pantin)
+  ];
   return (
     <>
       {/* TODO: add boundaries (`maxBounds`) */}
@@ -144,6 +147,8 @@ const MapView = () => {
         center={[48.8566, 2.3522]}
         zoom={12}
         style={{ height: "100vh", width: "100%" }}
+        maxBounds={parisBounds} // Restrict map bounds
+        maxBoundsViscosity={1.0} // Hard limit on panning
       >
         <TileLayer
           url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
