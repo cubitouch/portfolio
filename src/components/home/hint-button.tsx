@@ -15,8 +15,8 @@ export const HintButton = ({ onClick }: HintButtonProps) => {
         padding: theme.spacing(2, 6),
         marginTop: theme.spacing(4),
         [theme.breakpoints.down("md")]: {
-            padding: theme.spacing(1, 3),
-            marginTop: theme.spacing(2),
+          padding: theme.spacing(1, 3),
+          marginTop: theme.spacing(2),
         },
         color: theme.palette.primary.main,
         background: theme.palette.common.white,

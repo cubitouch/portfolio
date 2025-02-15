@@ -7,7 +7,7 @@ import {
   useTheme,
   type Breakpoint,
 } from "@mui/material";
-import { NAVBAR_HEIGHT } from "../constants";
+import { NAVBAR_HEIGHT } from "../../constants";
 
 interface SlideProps {
   children: React.ReactNode;

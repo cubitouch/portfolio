@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import MapView from "~/components/map-view";
+import MapView from "~/components/fashion/map-view";
 import type { Route } from "./+types/fashion";
 
 export function meta({}: Route.MetaArgs) {

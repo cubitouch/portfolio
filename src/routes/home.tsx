@@ -1,4 +1,3 @@
-import type { Route } from "./+types/home";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import {
@@ -15,12 +14,13 @@ import { TypeAnimation } from "react-type-animation";
 import ScrollSpy from "react-ui-scrollspy";
 import topSlideBackground from "../assets/blanca-paloma-sanchez-AvfTRF9QINM-unsplash-min.jpg";
 import { FancyLoader } from "../components/fancy-loader";
-import { HintButton } from "../components/hint-button";
-import { JourneySlider } from "../components/journey-slider";
+import { HintButton } from "../components/home/hint-button";
+import { JourneySlider } from "../components/home/journey-slider";
+import { RadarChart } from "../components/home/radar-chart";
+import { Slide } from "../components/home/slide";
 import { NavBar } from "../components/nav-bar";
-import { RadarChart } from "../components/radar-chart";
-import { Slide } from "../components/slide";
 import { NAVBAR_HEIGHT } from "../constants";
+import type { Route } from "./+types/home";
 
 export const HOME_ID = "top";
 
