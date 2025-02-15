@@ -215,7 +215,7 @@ const MapView = () => {
             <ListItemButton
               onClick={() => {
                 window.open(
-                  `http://maps.google.com/maps?daddr=${selectedShop.lat},${selectedShop.lon}`,
+                  `http://maps.google.com/?q=${selectedShop.address}`,
                   "_blank"
                 );
               }}
