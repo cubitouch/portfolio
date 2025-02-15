@@ -10,6 +10,7 @@ import {
   ListItemText,
   SwipeableDrawer,
   Typography,
+  useMediaQuery,
   useTheme,
 } from "@mui/material";
 import "leaflet/dist/leaflet.css";
@@ -82,6 +83,7 @@ export const fetchShops = async () => {
 
 const MapView = () => {
   const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   // data fetching
   const [shops, setShops] = useState<Shop[]>([]);
   const [selectedShop, setSelectedShop] = useState<Shop>();
@@ -171,8 +173,15 @@ const MapView = () => {
         open={!!selectedShop}
         onClose={() => setSelectedShop(undefined)}
         onOpen={() => setSelectedShop(selectedShop)}
-        anchor="bottom"
-        PaperProps={{ sx: { background: theme.palette.secondary.main } }}
+        anchor={isMobile ? "bottom" : "right"}
+        PaperProps={{
+          sx: {
+            background: theme.palette.secondary.main,
+            [theme.breakpoints.up("md")]: {
+              minWidth: 600,
+            },
+          },
+        }}
       >
         <List sx={{ paddingTop: 0 }}>
           {selectedShop?.picture && (
