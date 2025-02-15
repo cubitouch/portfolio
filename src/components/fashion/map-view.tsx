@@ -208,7 +208,9 @@ const MapView = () => {
           )}
           <ListItem>
             <ListItemText>
-              <Typography variant="h3">{selectedShop?.name}</Typography>
+              <Typography variant="h3" color="primary">
+                {selectedShop?.name}
+              </Typography>
             </ListItemText>
           </ListItem>
           {selectedShop?.address && (
@@ -220,7 +222,9 @@ const MapView = () => {
                 );
               }}
             >
-              <ListItemText>{selectedShop.address}</ListItemText>
+              <ListItemText primaryTypographyProps={{ color: "primary" }}>
+                {selectedShop.address}
+              </ListItemText>
               <ListItemSecondaryAction>
                 <DirectionsIcon color="primary" />
               </ListItemSecondaryAction>
