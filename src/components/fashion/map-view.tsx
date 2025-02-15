@@ -1,4 +1,17 @@
-import { Box, useTheme } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import DirectionsIcon from "@mui/icons-material/Directions";
+import {
+  Box,
+  Fab,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemSecondaryAction,
+  ListItemText,
+  SwipeableDrawer,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import "leaflet/dist/leaflet.css";
 import { useEffect, useRef, useState } from "react";
 import { renderToString } from "react-dom/server";
@@ -71,6 +84,7 @@ const MapView = () => {
   const theme = useTheme();
   // data fetching
   const [shops, setShops] = useState<Shop[]>([]);
+  const [selectedShop, setSelectedShop] = useState<Shop>();
   const hasLoaded = useRef(false);
   useEffect(() => {
     if (!hasLoaded.current) {
@@ -94,53 +108,124 @@ const MapView = () => {
   }, []);
   if (!leaflet || !LeafletComponents) return <p>Loading map...</p>;
 
-  const { MapContainer, TileLayer, Marker, Popup } = LeafletComponents;
-  const customIcon = leaflet.divIcon({
-    className: "custom-marker",
-    html: renderToString(
-      <Box
-        component="div"
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          width: 8,
-          height: 8,
-          borderRadius: "50%",
-          backgroundColor: theme.palette.secondary.main,
-          border: `2px solid ${theme.palette.primary.main}`,
-          padding: 4,
-        }}
-      >
-        <CustomMarkerIcon />
-      </Box>
-    ),
-    iconSize: [16, 16],
-    iconAnchor: [10, 16], // Adjust for alignment
-    popupAnchor: [0, -16],
-  });
+  const { MapContainer, TileLayer, Marker } = LeafletComponents;
+  const customIcon = (active: boolean) =>
+    leaflet.divIcon({
+      className: "custom-marker",
+      html: renderToString(
+        <Box
+          component="div"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: 8,
+            height: 8,
+            borderRadius: "50%",
+            backgroundColor: active
+              ? theme.palette.secondary.light
+              : theme.palette.secondary.main,
+            border: `2px solid ${theme.palette.primary.main}`,
+            padding: 4,
+          }}
+        >
+          <CustomMarkerIcon />
+        </Box>
+      ),
+      iconSize: [16, 16],
+      iconAnchor: [10, 16], // Adjust for alignment
+      popupAnchor: [0, -16],
+    });
 
   return (
-    // TODO: add boundaries (`maxBounds`)
-    <MapContainer
-      center={[48.8566, 2.3522]}
-      zoom={12}
-      style={{ height: "100vh", width: "100%" }}
-    >
-      <TileLayer
-        url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-        attribution='© <a href="https://carto.com/attributions">CARTO</a>'
-      />
-      {shops.map((shop) => (
-        <Marker key={shop.id} position={[shop.lat, shop.lon]} icon={customIcon}>
-          <Popup>
-            <strong>{shop.name}</strong>
-            <br />
-            {shop.address}
-          </Popup>
-        </Marker>
-      ))}
-    </MapContainer>
+    <>
+      {/* TODO: add boundaries (`maxBounds`) */}
+      <MapContainer
+        center={[48.8566, 2.3522]}
+        zoom={12}
+        style={{ height: "100vh", width: "100%" }}
+      >
+        <TileLayer
+          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+          attribution='© <a href="https://carto.com/attributions">CARTO</a>'
+        />
+        {shops.map((shop) => (
+          <Marker
+            key={shop.id}
+            position={[shop.lat, shop.lon]}
+            icon={customIcon(shop === selectedShop)}
+            eventHandlers={{
+              click: () => {
+                setSelectedShop(shop);
+              },
+            }}
+          ></Marker>
+        ))}
+      </MapContainer>
+      <SwipeableDrawer
+        open={!!selectedShop}
+        onClose={() => setSelectedShop(undefined)}
+        onOpen={() => setSelectedShop(selectedShop)}
+        anchor="bottom"
+        PaperProps={{ sx: { background: theme.palette.secondary.main } }}
+      >
+        <List sx={{ paddingTop: 0 }}>
+          {selectedShop?.picture && (
+            <ListItem
+              sx={{ display: "flex", justifyContent: "center" }}
+              disablePadding
+            >
+              <Box
+                component="img"
+                src={selectedShop.picture}
+                alt={selectedShop.name}
+                sx={{
+                  width: "100%",
+                  height: 200,
+                  objectFit: "cover",
+                }}
+              ></Box>
+              <Fab
+                color="primary"
+                size="medium"
+                aria-label="close"
+                sx={{
+                  position: "absolute",
+                  top: theme.spacing(2),
+                  right: theme.spacing(2),
+                  opacity: 0.8,
+                }}
+                onClick={() => setSelectedShop(undefined)}
+              >
+                <CloseIcon />
+              </Fab>
+            </ListItem>
+          )}
+          <ListItem>
+            <ListItemText>
+              <Typography variant="h3">{selectedShop?.name}</Typography>
+            </ListItemText>
+          </ListItem>
+          {selectedShop?.address && (
+            <ListItemButton
+              onClick={() => {
+                window.open(
+                  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                    selectedShop.address
+                  )}`,
+                  "_blank"
+                );
+              }}
+            >
+              <ListItemText>{selectedShop.address}</ListItemText>
+              <ListItemSecondaryAction>
+                <DirectionsIcon color="primary" />
+              </ListItemSecondaryAction>
+            </ListItemButton>
+          )}
+        </List>
+      </SwipeableDrawer>
+    </>
   );
 };
 
