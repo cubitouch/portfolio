@@ -17,6 +17,7 @@ import "leaflet/dist/leaflet.css";
 import { useEffect, useRef, useState } from "react";
 import { renderToString } from "react-dom/server";
 import CustomMarkerIcon from "../../assets/logo-monogram.svg?react"; // SVG as React component
+import { FancyLoader } from "../fancy-loader";
 
 interface Record {
   id: string;
@@ -108,7 +109,22 @@ const MapView = () => {
       setLeafletComponents(module);
     });
   }, []);
-  if (!leaflet || !LeafletComponents) return <p>Loading map...</p>;
+  if (!leaflet || !LeafletComponents || !shops.length)
+    return (
+      <Box
+        sx={{
+          color: theme.palette.primary.contrastText,
+          minHeight: `calc(100dvh)`,
+          background: theme.palette.primary.main,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flex: 1,
+        }}
+      >
+        <FancyLoader />
+      </Box>
+    );
 
   const { MapContainer, TileLayer, Marker } = LeafletComponents;
   const customIcon = (active: boolean) =>
@@ -144,7 +160,6 @@ const MapView = () => {
   ];
   return (
     <>
-      {/* TODO: add boundaries (`maxBounds`) */}
       <MapContainer
         center={[48.8566, 2.3522]}
         zoom={12}

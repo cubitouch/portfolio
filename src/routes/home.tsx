@@ -11,7 +11,6 @@ import {
 import "chart.js/auto";
 import { TypeAnimation } from "react-type-animation";
 import topSlideBackground from "../assets/blanca-paloma-sanchez-AvfTRF9QINM-unsplash-min.jpg";
-import { FancyLoader } from "../components/fancy-loader";
 import { HintButton } from "../components/home/hint-button";
 import { JourneySlider } from "../components/home/journey-slider";
 import { RadarChart } from "../components/home/radar-chart";
@@ -83,28 +82,25 @@ const HomePage = () => {
             justifyContent: "center",
             alignItems: "center",
             flex: 1,
+            flexDirection: "column",
           }}
         >
-          <FancyLoader />
-        </Box>
-        <Typography variant="h4" align="center">
-          Check out my new data app{" "}
-          <Link
-            href="https://energy-data-exploration.vercel.app"
-            target="_blank"
-          >
-            here
-          </Link>{" "}
-          🎉
-          <br />
-          <small>Built to visually explore French energy open datasets!</small>
-        </Typography>
-        <Box display="flex" flexDirection="row" alignItems="center">
-          <Typography variant="caption" flex="1">
-            * Nothing is actually loading, I just wanted to build a fancy
-            loader.
+          <Typography component="div" variant="h4" align="center">
+            Check out my new data app{" "}
+            <Link
+              href="https://energy-data-exploration.vercel.app"
+              target="_blank"
+            >
+              here
+            </Link>{" "}
+            🎉
           </Typography>
-          <Stack direction="row" spacing={2} justifyContent="flex-end">
+          <Typography variant="subtitle1" align="center">
+            Built to visually explore French energy open datasets!
+          </Typography>
+        </Box>
+        <Box display="flex" flexDirection="row" justifyContent="right">
+          <Stack direction="row" spacing={2}>
             <IconButton
               size="large"
               color="secondary"
