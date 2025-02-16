@@ -75,7 +75,7 @@ export const useSelectableShops = () => {
         .then(async (data) =>
           setShops((await data.json()) as unknown as Shop[])
         )
-        .catch((r) =>
+        .catch(() =>
           console.error("Data missing, did you run `npm run prepare-data`?")
         );
 
