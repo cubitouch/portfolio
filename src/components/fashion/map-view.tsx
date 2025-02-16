@@ -1,101 +1,17 @@
-import CloseIcon from "@mui/icons-material/Close";
-import DirectionsIcon from "@mui/icons-material/Directions";
-import {
-  Box,
-  Fab,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemSecondaryAction,
-  ListItemText,
-  SwipeableDrawer,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import "leaflet/dist/leaflet.css";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { renderToString } from "react-dom/server";
 import CustomMarkerIcon from "../../assets/logo-monogram.svg?react"; // SVG as React component
 import { FancyLoader } from "../fancy-loader";
-
-interface Record {
-  id: string;
-  fields: {
-    name: string;
-    address: string;
-    lat: number;
-    lon: number;
-    picture: [{ thumbnails: { large: { url: string } } }];
-    active: boolean;
-    categories: string[];
-  };
-}
-interface Shop {
-  id: string;
-  name: string;
-  address: string;
-  lat: number;
-  lon: number;
-  picture: string;
-  active: boolean;
-  categories: string[];
-}
-export const fetchShops = async () => {
-  const AIRTABLE_API_KEY = import.meta.env.VITE_AIRTABLE_API_KEY;
-  const BASE_ID = "appY0KHiZkP8q5JXL";
-  const TABLE_ID = "tblFbW11rhW442gdt";
-  const URL = `https://api.airtable.com/v0/${BASE_ID}/${TABLE_ID}`;
-
-  try {
-    const response = await fetch(URL, {
-      headers: {
-        Authorization: `Bearer ${AIRTABLE_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error(`Airtable API error: ${response.statusText}`);
-    }
-
-    const data = await response.json();
-
-    return data.records
-      .map(
-        (record: Record) =>
-          ({
-            id: record.id,
-            name: record.fields.name,
-            address: record.fields.address,
-            lat: record.fields.lat,
-            lon: record.fields.lon,
-            picture: record.fields.picture?.[0]?.thumbnails.large.url,
-            active: record.fields.active,
-            categories: record.fields.categories,
-          } as Shop)
-      )
-      .filter((s: Shop) => s.active) as Shop[];
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return [] as Shop[];
-  }
-};
+import { useSelectableShops } from "./data";
+import { ShopInfo } from "./shop-info";
 
 const MapView = () => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-  // data fetching
-  const [shops, setShops] = useState<Shop[]>([]);
-  const [selectedShop, setSelectedShop] = useState<Shop>();
-  const hasLoaded = useRef(false);
-  useEffect(() => {
-    if (!hasLoaded.current) {
-      fetchShops().then(setShops);
-      hasLoaded.current = true;
-    }
-  }, [shops]);
 
+  // data fetching
+  const [shops, selectedShop, setSelectedShop] = useSelectableShops();
   console.log("shops", shops);
 
   // map client setup
@@ -151,7 +67,7 @@ const MapView = () => {
         </Box>
       ),
       iconSize: [16, 16],
-      iconAnchor: [10, 16], // Adjust for alignment
+      iconAnchor: [10, 16],
       popupAnchor: [0, -16],
     });
   const parisBounds: [[number, number], [number, number]] = [
@@ -184,78 +100,10 @@ const MapView = () => {
           ></Marker>
         ))}
       </MapContainer>
-      <SwipeableDrawer
-        open={!!selectedShop}
+      <ShopInfo
+        shop={selectedShop}
         onClose={() => setSelectedShop(undefined)}
-        onOpen={() => setSelectedShop(selectedShop)}
-        anchor={isMobile ? "bottom" : "right"}
-        PaperProps={{
-          sx: {
-            background: theme.palette.primary.main,
-            [theme.breakpoints.up("md")]: {
-              minWidth: 600,
-            },
-          },
-        }}
-      >
-        <List sx={{ paddingTop: 0 }}>
-          {selectedShop?.picture && (
-            <ListItem
-              sx={{ display: "flex", justifyContent: "center" }}
-              disablePadding
-            >
-              <Box
-                component="img"
-                src={selectedShop.picture}
-                alt={selectedShop.name}
-                sx={{
-                  width: "100%",
-                  height: 200,
-                  objectFit: "cover",
-                }}
-              ></Box>
-              <Fab
-                color="primary"
-                size="medium"
-                aria-label="close"
-                sx={{
-                  position: "absolute",
-                  top: theme.spacing(2),
-                  right: theme.spacing(2),
-                  opacity: 0.8,
-                }}
-                onClick={() => setSelectedShop(undefined)}
-              >
-                <CloseIcon />
-              </Fab>
-            </ListItem>
-          )}
-          <ListItem>
-            <ListItemText>
-              <Typography variant="h3" color="secondary">
-                {selectedShop?.name}
-              </Typography>
-            </ListItemText>
-          </ListItem>
-          {selectedShop?.address && (
-            <ListItemButton
-              onClick={() => {
-                window.open(
-                  `http://maps.google.com/?q=${selectedShop.address}`,
-                  "_blank"
-                );
-              }}
-            >
-              <ListItemText primaryTypographyProps={{ color: "secondary" }}>
-                {selectedShop.address}
-              </ListItemText>
-              <ListItemSecondaryAction>
-                <DirectionsIcon color="secondary" />
-              </ListItemSecondaryAction>
-            </ListItemButton>
-          )}
-        </List>
-      </SwipeableDrawer>
+      />
     </>
   );
 };
