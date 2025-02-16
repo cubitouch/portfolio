@@ -66,7 +66,10 @@ const fetchShops = async () => {
 export const useSelectableShops = () => {
   const [shops, setShops] = useState<Shop[]>([]);
   const [selectedShop, setSelectedShop] = useState<Shop>();
+  const unselectShops = () => setSelectedShop(undefined);
+  const selectShop = (shop: Shop) => setSelectedShop(shop);
   const hasLoaded = useRef(false);
+  
   useEffect(() => {
     if (!hasLoaded.current) {
       fetchShops().then(setShops);
@@ -74,5 +77,5 @@ export const useSelectableShops = () => {
     }
   }, [shops]);
 
-  return [shops, selectedShop, setSelectedShop] as const;
+  return [shops, selectedShop, selectShop, unselectShops] as const;
 };

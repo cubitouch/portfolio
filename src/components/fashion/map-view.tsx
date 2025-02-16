@@ -11,7 +11,7 @@ const MapView = () => {
   const theme = useTheme();
 
   // data fetching
-  const [shops, selectedShop, setSelectedShop] = useSelectableShops();
+  const [shops, selectedShop, selectShop, unselectShops] = useSelectableShops();
   console.log("shops", shops);
 
   // map client setup
@@ -93,17 +93,12 @@ const MapView = () => {
             position={[shop.lat, shop.lon]}
             icon={customIcon(shop === selectedShop)}
             eventHandlers={{
-              click: () => {
-                setSelectedShop(shop);
-              },
+              click: () => selectShop(shop),
             }}
-          ></Marker>
+          />
         ))}
       </MapContainer>
-      <ShopInfo
-        shop={selectedShop}
-        onClose={() => setSelectedShop(undefined)}
-      />
+      <ShopInfo shop={selectedShop} onClose={unselectShops} />
     </>
   );
 };
