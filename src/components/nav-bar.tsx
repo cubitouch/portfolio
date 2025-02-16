@@ -1,29 +1,59 @@
 import {
   AppBar,
   Box,
-  Fab,
   Stack,
   Tab,
   Tabs,
   Toolbar,
   Typography,
-  useTheme,
 } from "@mui/material";
 
-import React from "react";
-import { useNavigate } from "react-router";
+import { useEffect, useState } from "react";
+import { NAVBAR_HEIGHT } from "~/constants";
 import Logo from "../assets/logo.svg?react";
 
+const useScrollSpy = (sectionIds: string[], offset = 0) => {
+  const [activeId, setActiveId] = useState("");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + offset;
+      const selected = sectionIds.find((id) => {
+        const element = document.getElementById(id);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          return (
+            scrollPosition >= offsetTop &&
+            scrollPosition < offsetTop + offsetHeight
+          );
+        }
+        return false;
+      });
+      if (selected) {
+        setActiveId(selected);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [sectionIds, offset]);
+
+  return activeId;
+};
+
 interface NavBarProps {
-  currentSection: string;
   scrollTo: (id: string) => void;
   defaultSectionId: string;
 }
-export const NavBar = ({
-  currentSection,
-  scrollTo,
-  defaultSectionId,
-}: NavBarProps) => {
+export const NavBar = ({ scrollTo, defaultSectionId }: NavBarProps) => {
+  const tabs = ["", "Journey", "Interests", "More"];
+  const sectionIds = tabs.map((t) =>
+    (!!t ? t : defaultSectionId).toLowerCase()
+  );
+  const currentSection = useScrollSpy(sectionIds, NAVBAR_HEIGHT);
+
   return (
     <AppBar>
       <Toolbar>
@@ -38,17 +68,21 @@ export const NavBar = ({
           <Logo fontSize={32} />
           <Box flex="1"></Box>
           <Tabs value={currentSection}>
-            {["", "Journey", "Interests", "More"].map((tab) => {
+            {tabs.map((tab) => {
               const id = tab.toLowerCase();
               const value = !!id ? id : defaultSectionId;
               return (
                 <Tab
+                  LinkComponent="a"
+                  href={`#${id}`}
                   sx={!id ? { width: 0, minWidth: 0, padding: 0 } : undefined}
                   value={value}
                   key={value}
                   label={tab}
-                  data-to-scrollspy-id={value}
-                  onClick={() => scrollTo(id)}
+                  onClick={(e) => {
+                    scrollTo(id);
+                    e.preventDefault();
+                  }}
                 />
               );
             })}
@@ -56,46 +90,5 @@ export const NavBar = ({
         </Stack>
       </Toolbar>
     </AppBar>
-  );
-};
-
-interface SimpleNavBarProps {
-  actions?: { onClick: () => void; icon: React.ReactNode }[];
-}
-export const SimpleNavBar = ({ actions }: SimpleNavBarProps) => {
-  const navigate = useNavigate();
-  const theme = useTheme();
-  return (
-    <>
-      <AppBar sx={{ height: 64 }}>
-        <Toolbar>
-          <Box
-            onClick={() => navigate("/")}
-            display="flex"
-            gap={1}
-            sx={{ cursor: "pointer" }}
-          >
-            <Logo fontSize={32} />
-          </Box>
-        </Toolbar>
-      </AppBar>
-      <Box
-        sx={{
-          position: "fixed",
-          bottom: theme.spacing(4),
-          right: theme.spacing(4),
-          display: "flex",
-          flexDirection: "row",
-          gap: theme.spacing(2),
-          zIndex: 1,
-        }}
-      >
-        {actions?.map((action, i) => (
-          <Fab key={i} onClick={action.onClick}>
-            {action.icon}
-          </Fab>
-        ))}
-      </Box>
-    </>
   );
 };
