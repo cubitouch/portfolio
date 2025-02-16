@@ -191,7 +191,7 @@ const MapView = () => {
         anchor={isMobile ? "bottom" : "right"}
         PaperProps={{
           sx: {
-            background: theme.palette.secondary.main,
+            background: theme.palette.primary.main,
             [theme.breakpoints.up("md")]: {
               minWidth: 600,
             },
@@ -232,7 +232,7 @@ const MapView = () => {
           )}
           <ListItem>
             <ListItemText>
-              <Typography variant="h3" color="primary">
+              <Typography variant="h3" color="secondary">
                 {selectedShop?.name}
               </Typography>
             </ListItemText>
@@ -246,11 +246,11 @@ const MapView = () => {
                 );
               }}
             >
-              <ListItemText primaryTypographyProps={{ color: "primary" }}>
+              <ListItemText primaryTypographyProps={{ color: "secondary" }}>
                 {selectedShop.address}
               </ListItemText>
               <ListItemSecondaryAction>
-                <DirectionsIcon color="primary" />
+                <DirectionsIcon color="secondary" />
               </ListItemSecondaryAction>
             </ListItemButton>
           )}
