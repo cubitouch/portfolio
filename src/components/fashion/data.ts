@@ -22,8 +22,7 @@ export interface Shop {
   active: boolean;
   categories: string[];
 }
-const fetchShops = async () => {
-  const AIRTABLE_API_KEY = import.meta.env.VITE_AIRTABLE_API_KEY;
+export const fetchShops = async (AIRTABLE_API_KEY: string) => {
   const BASE_ID = "appY0KHiZkP8q5JXL";
   const TABLE_ID = "tblFbW11rhW442gdt";
   const URL = `https://api.airtable.com/v0/${BASE_ID}/${TABLE_ID}`;
@@ -69,10 +68,17 @@ export const useSelectableShops = () => {
   const unselectShops = () => setSelectedShop(undefined);
   const selectShop = (shop: Shop) => setSelectedShop(shop);
   const hasLoaded = useRef(false);
-  
+
   useEffect(() => {
     if (!hasLoaded.current) {
-      fetchShops().then(setShops);
+      fetch("/data/shops.json")
+        .then(async (data) =>
+          setShops((await data.json()) as unknown as Shop[])
+        )
+        .catch((r) =>
+          console.error("Data missing, did you run `npm run prepare-data`?")
+        );
+
       hasLoaded.current = true;
     }
   }, [shops]);

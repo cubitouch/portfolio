@@ -25,3 +25,4 @@ build
 
 /.react-router/
 .env
+public/data

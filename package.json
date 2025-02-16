@@ -8,7 +8,8 @@
     "build": "react-router build",
     "dev": "react-router dev",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "deploy": "firebase deploy"
+    "deploy": "firebase deploy",
+    "prepare-data": "npx tsx ./scripts/fetch-airtable-data.ts"
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
@@ -37,10 +38,14 @@
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",
     "@vitejs/plugin-react-swc": "^3.8.0",
+    "dotenv": "^16.4.7",
     "eslint": "^8.55.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
+    "node-fetch": "^3.3.2",
     "react-router-devtools": "^1.1.4",
+    "sharp": "^0.33.5",
+    "tsx": "^4.19.2",
     "typescript": "^5.7.3",
     "vite": "^6.1.0",
     "vite-plugin-svgr": "^4.3.0",
