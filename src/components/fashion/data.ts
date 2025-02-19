@@ -23,6 +23,7 @@ export interface Shop {
   active: boolean;
   categories: string[];
   website: string;
+  distanceKm?: number;
 }
 export const fetchShops = async (AIRTABLE_API_KEY: string) => {
   const BASE_ID = "appY0KHiZkP8q5JXL";
@@ -65,7 +66,31 @@ export const fetchShops = async (AIRTABLE_API_KEY: string) => {
   }
 };
 
-export const useSelectableShops = () => {
+export const getDistance = (
+  lat1: number,
+  lon1: number,
+  lat2: number,
+  lon2: number
+) => {
+  const R = 6371; // Radius of the Earth in km
+  const toRad = (deg: number) => (deg * Math.PI) / 180;
+
+  const dLat = toRad(lat2 - lat1);
+  const dLon = toRad(lon2 - lon1);
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(toRad(lat1)) *
+      Math.cos(toRad(lat2)) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
+
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c; // Distance in km
+};
+
+export const useSelectableShops = (
+  location: { lat: number; lon: number } | null
+) => {
   const [shops, setShops] = useState<Shop[]>([]);
   const [selectedShop, setSelectedShop] = useState<Shop>();
   const unselectShops = () => setSelectedShop(undefined);
@@ -85,6 +110,21 @@ export const useSelectableShops = () => {
       hasLoaded.current = true;
     }
   }, [shops]);
+
+  useEffect(() => {
+    if (location) {
+      shops.forEach((shop) => {
+        const distanceKm = getDistance(
+          location.lat,
+          location.lon,
+          shop.lat,
+          shop.lon
+        );
+        shop.distanceKm = distanceKm;
+      });
+      setShops(shops);
+    }
+  }, [shops.length, location]);
 
   return [shops, selectedShop, selectShop, unselectShops] as const;
 };

@@ -87,9 +87,12 @@ export const ShopInfo = ({ shop, onClose }: ShopInfoProps) => {
               );
             }}
           >
-            <ListItemText primaryTypographyProps={{ color: "secondary" }}>
-              {shop.address}
-            </ListItemText>
+            <ListItemText
+              primaryTypographyProps={{ color: "secondary" }}
+              secondaryTypographyProps={{ color: "secondary" }}
+              primary={shop.address}
+              secondary={`(${shop.distanceKm?.toFixed(1)} km)`}
+            />
             <ListItemSecondaryAction>
               <DirectionsIcon color="secondary" />
             </ListItemSecondaryAction>
@@ -103,7 +106,7 @@ export const ShopInfo = ({ shop, onClose }: ShopInfoProps) => {
           <ListItemText primaryTypographyProps={{ color: "secondary" }}>
             Website
           </ListItemText>
-          <ListItemSecondaryAction >
+          <ListItemSecondaryAction>
             <LanguageIcon color="secondary" />
           </ListItemSecondaryAction>
         </ListItemButton>
