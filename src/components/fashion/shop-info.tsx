@@ -1,5 +1,6 @@
 import CloseIcon from "@mui/icons-material/Close";
 import DirectionsIcon from "@mui/icons-material/Directions";
+import LanguageIcon from "@mui/icons-material/Language";
 import {
   Box,
   Fab,
@@ -94,6 +95,18 @@ export const ShopInfo = ({ shop, onClose }: ShopInfoProps) => {
             </ListItemSecondaryAction>
           </ListItemButton>
         )}
+        <ListItemButton
+          onClick={() => {
+            window.open(shop?.website, "_blank");
+          }}
+        >
+          <ListItemText primaryTypographyProps={{ color: "secondary" }}>
+            Website
+          </ListItemText>
+          <ListItemSecondaryAction >
+            <LanguageIcon color="secondary" />
+          </ListItemSecondaryAction>
+        </ListItemButton>
       </List>
     </SwipeableDrawer>
   );
