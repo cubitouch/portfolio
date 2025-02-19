@@ -10,6 +10,7 @@ interface Record {
     picture: [{ thumbnails: { large: { url: string } } }];
     active: boolean;
     categories: string[];
+    website: string;
   };
 }
 export interface Shop {
@@ -21,6 +22,7 @@ export interface Shop {
   picture: string;
   active: boolean;
   categories: string[];
+  website: string;
 }
 export const fetchShops = async (AIRTABLE_API_KEY: string) => {
   const BASE_ID = "appY0KHiZkP8q5JXL";
@@ -53,6 +55,7 @@ export const fetchShops = async (AIRTABLE_API_KEY: string) => {
             picture: record.fields.picture?.[0]?.thumbnails.large.url,
             active: record.fields.active,
             categories: record.fields.categories,
+            website: record.fields.website,
           } as Shop)
       )
       .filter((s: Shop) => s.active) as Shop[];
