@@ -74,7 +74,7 @@ const GmailFootprint = () => {
     clientId: CLIENT_ID,
     scope: SCOPES,
   });
-  const { isLoading, counts, error, fetchCounts } =
+  const { isLoading, counts, fetchCounts } =
     useGmailProgressiveCounts(accessToken);
   useEffect(() => {
     if (accessToken) {
