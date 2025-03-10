@@ -10,7 +10,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { SwiperWrapper } from "./swipper-wrapper";
+import { SwiperWrapper } from "./swipperWrapper";
 
 const journeyItems = [
   // FLAG Informatique

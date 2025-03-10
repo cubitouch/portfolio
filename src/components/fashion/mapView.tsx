@@ -3,9 +3,9 @@ import "leaflet/dist/leaflet.css";
 import { useEffect, useState } from "react";
 import { renderToString } from "react-dom/server";
 import CustomMarkerIcon from "../../assets/logo-monogram.svg?react"; // SVG as React component
-import { FancyLoader } from "../fancy-loader";
+import { FancyLoader } from "../fancyLoader";
 import { useSelectableShops } from "./data";
-import { ShopInfo } from "./shop-info";
+import { ShopInfo } from "./shopInfo";
 
 const useUserLocation = () => {
   const [location, setLocation] = useState<{ lat: number; lon: number } | null>(

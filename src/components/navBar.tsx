@@ -44,10 +44,15 @@ const useScrollSpy = (sectionIds: string[], offset = 0) => {
 };
 
 interface NavBarProps {
-  scrollTo: (id: string) => void;
-  defaultSectionId: string;
+  scrollTo?: (id: string) => void;
+  defaultSectionId?: string;
+  withTabs?: boolean;
 }
-export const NavBar = ({ scrollTo, defaultSectionId }: NavBarProps) => {
+export const NavBar = ({
+  scrollTo,
+  defaultSectionId = "",
+  withTabs = true,
+}: NavBarProps) => {
   const tabs = ["", "Journey", "Interests", "More"];
   const sectionIds = tabs.map((t) =>
     (!!t ? t : defaultSectionId).toLowerCase()
@@ -67,26 +72,28 @@ export const NavBar = ({ scrollTo, defaultSectionId }: NavBarProps) => {
           </Typography>
           <Logo fontSize={32} />
           <Box flex="1"></Box>
-          <Tabs value={currentSection}>
-            {tabs.map((tab) => {
-              const id = tab.toLowerCase();
-              const value = !!id ? id : defaultSectionId;
-              return (
-                <Tab
-                  LinkComponent="a"
-                  href={`#${id}`}
-                  sx={!id ? { width: 0, minWidth: 0, padding: 0 } : undefined}
-                  value={value}
-                  key={value}
-                  label={tab}
-                  onClick={(e) => {
-                    scrollTo(id);
-                    e.preventDefault();
-                  }}
-                />
-              );
-            })}
-          </Tabs>
+          {withTabs && (
+            <Tabs value={currentSection}>
+              {tabs.map((tab) => {
+                const id = tab.toLowerCase();
+                const value = !!id ? id : defaultSectionId;
+                return (
+                  <Tab
+                    LinkComponent="a"
+                    href={`#${id}`}
+                    sx={!id ? { width: 0, minWidth: 0, padding: 0 } : undefined}
+                    value={value}
+                    key={value}
+                    label={tab}
+                    onClick={(e) => {
+                      scrollTo && scrollTo(id);
+                      e.preventDefault();
+                    }}
+                  />
+                );
+              })}
+            </Tabs>
+          )}
         </Stack>
       </Toolbar>
     </AppBar>

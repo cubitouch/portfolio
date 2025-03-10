@@ -11,11 +11,11 @@ import {
 import "chart.js/auto";
 import { TypeAnimation } from "react-type-animation";
 import topSlideBackground from "../assets/blanca-paloma-sanchez-AvfTRF9QINM-unsplash-min.jpg";
-import { HintButton } from "../components/home/hint-button";
-import { JourneySlider } from "../components/home/journey-slider";
-import { RadarChart } from "../components/home/radar-chart";
+import { HintButton } from "../components/home/hintButton";
+import { JourneySlider } from "../components/home/journeySlider";
+import { RadarChart } from "../components/home/radarChart";
 import { Slide } from "../components/home/slide";
-import { NavBar } from "../components/nav-bar";
+import { NavBar } from "../components/navBar";
 import { NAVBAR_HEIGHT } from "../constants";
 import type { Route } from "./+types/home";
 
