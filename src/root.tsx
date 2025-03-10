@@ -35,7 +35,7 @@ export const links: Route.LinksFunction = () => [
 
 declare global {
   interface Window {
-    dataLayer: any[];
+    dataLayer: unknown[];
   }
 }
 
@@ -47,7 +47,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
     // Google Analytics Setup
     window.dataLayer = window.dataLayer || [];
-    function gtag(...args: any[]) {
+    function gtag(...args: unknown[]) {
       window.dataLayer.push(args);
     }
     gtag("js", new Date());

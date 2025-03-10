@@ -54,9 +54,7 @@ export const NavBar = ({
   withTabs = true,
 }: NavBarProps) => {
   const tabs = ["", "Journey", "Interests", "More"];
-  const sectionIds = tabs.map((t) =>
-    (!!t ? t : defaultSectionId).toLowerCase()
-  );
+  const sectionIds = tabs.map((t) => (t ?? defaultSectionId).toLowerCase());
   const currentSection = useScrollSpy(sectionIds, NAVBAR_HEIGHT);
 
   return (

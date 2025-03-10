@@ -62,7 +62,7 @@ export const SwiperWrapper = ({ items, slideSx }: SwiperWrapper) => {
         swiperRef.current.destroy();
       }
     };
-  }, []);
+  }, [theme, items.length]);
 
   return (
     <>
