@@ -22,10 +22,10 @@ const CLIENT_ID =
   "77093602474-gpn6s3rmm3nuk8e1oqvevuf5urv7cmgh.apps.googleusercontent.com";
 const SCOPES = "https://www.googleapis.com/auth/gmail.readonly";
 
-// https://www.pawprint.eco/eco-blog/carbon-footprint-email
-// https://www.fortomorrow.eu/en/blog/carbon-email
-// -> Short email via laptop	0.3 grams
-function estimateEmailCO2Kg(emailCount: number, gramsPerEmail = 0.3): number {
+// https://greenoco.io/en/what-is-the-carbon-footprint-of-an-email/
+// -> 1 email sent = 4g
+// TODO: use storage duration (1 year = 10g)
+function estimateEmailCO2Kg(emailCount: number, gramsPerEmail = 4): number {
   // gramsPerEmail: typical ~4g for a normal email
   return (emailCount * gramsPerEmail) / 1000;
 }
