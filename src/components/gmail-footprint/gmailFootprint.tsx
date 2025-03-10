@@ -60,7 +60,9 @@ const EmailCountCard = ({
                   <Co2Icon />
                 </Avatar>
               }
-              label={`~${estimateEmailCO2Kg(count).toLocaleString()} kg`}
+              label={`~${estimateEmailCO2Kg(count).toLocaleString(undefined, {
+                maximumFractionDigits: 2,
+              })} kg`}
             ></Chip>
           </Box>
         )}
