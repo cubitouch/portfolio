@@ -151,6 +151,7 @@ const GmailFootprint = () => {
               <>
                 <Divider />
                 <Typography variant="h3">So what?</Typography>
+                <Typography variant="body2">Coming soon...</Typography>
               </>
             )}
           </>

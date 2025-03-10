@@ -3,11 +3,11 @@ import GmailFootprint from "~/components/gmail-footprint/gmailFootprint";
 import type { Route } from "./+types/gmailFootprint";
 
 export function meta({}: Route.MetaArgs) {
-  return [{ title: "Men Sustainable Fashion Shops" }];
+  return [{ title: "Gmail Carbon Footprint Calculator" }];
 }
 export default function Fashion() {
   return (
-    <Box sx={{}}>
+    <Box>
       <GmailFootprint />
     </Box>
   );
