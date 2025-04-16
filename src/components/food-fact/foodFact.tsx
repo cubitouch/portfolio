@@ -59,7 +59,10 @@ const FoodFact = () => {
     <>
       <Box sx={{ height: "100vh" }}>
         {BarcodeScanner ? (
-          <BarcodeScanner onScan={(code: any) => setActiveBarcode(code)} />
+          <BarcodeScanner
+            options={{ formats: ["ean_13"], delay: 500 }}
+            onCapture={(codes: any[]) => setActiveBarcode(codes[0].rawValue)}
+          />
         ) : (
           <div>Loading scanner...</div>
         )}
