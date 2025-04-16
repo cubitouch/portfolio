@@ -53,9 +53,9 @@ const FoodFact = () => {
           options={{ formats: ["ean_13"], delay: 500 }}
           onCapture={(codes: any[]) => {
             console.log(codes);
-            alert(codes);
             setActiveBarcode(codes[0].rawValue);
           }}
+          paused={!!activeBarcode}
         />
       </Box>
 
