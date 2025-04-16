@@ -53,7 +53,7 @@ const FoodFact = () => {
   const onCapture = useCallback(
     (codes: any[]) => {
       console.log(codes);
-      alert(codes[0].rawValue);
+    //   alert(codes[0].rawValue);
       setActiveBarcode(codes[0].rawValue);
     },
     [setActiveBarcode]
