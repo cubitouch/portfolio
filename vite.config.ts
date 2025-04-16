@@ -9,4 +9,10 @@ export default defineConfig({
     port: 3000,
   },
   plugins: [reactRouter(), svgr(), tsconfigPaths()],
+  optimizeDeps: {
+    exclude: ["@preflower/barcode-detector-polyfill"],
+  },
+  ssr: {
+    noExternal: ["react-barcode-scanner"],
+  },
 });

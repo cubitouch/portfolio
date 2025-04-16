@@ -1,6 +1,6 @@
-// import { BarcodeScanner } from "react-barcode-scanner";
-// import "react-barcode-scanner/polyfill";
 import CropFreeIcon from "@mui/icons-material/CropFree";
+import { BarcodeScanner } from "react-barcode-scanner";
+import "react-barcode-scanner/polyfill";
 
 import {
   Box,
@@ -22,18 +22,10 @@ import { useEffect, useState } from "react";
 
 const FoodFact = () => {
   const theme = useTheme();
-  const [BarcodeScanner, setBarcodeScanner] = useState<any>(null);
-  useEffect(() => {
-    console.log("loading `react-barcode-scanner`");
-    import("react-barcode-scanner").then((mod) => {
-      console.log(mod);
-      setBarcodeScanner(() => mod.BarcodeScanner);
-    });
-  }, []);
-
   const [barcode, setBarcode] = useState("");
   const [activeBarcode, setActiveBarcode] = useState("");
   const [product, setProduct] = useState<any>(null);
+  const [tab, setTab] = useState("allergens");
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -54,18 +46,17 @@ const FoodFact = () => {
     }
   }, [activeBarcode]);
 
-  const [tab, setTab] = useState("allergens");
   return (
     <>
       <Box sx={{ height: "100vh" }}>
-        {BarcodeScanner ? (
-          <BarcodeScanner
-            options={{ formats: ["ean_13"], delay: 500 }}
-            onCapture={(codes: any[]) => setActiveBarcode(codes[0].rawValue)}
-          />
-        ) : (
-          <div>Loading scanner...</div>
-        )}
+        <BarcodeScanner
+          options={{ formats: ["ean_13"], delay: 500 }}
+          onCapture={(codes: any[]) => {
+            console.log(codes);
+            alert(codes);
+            setActiveBarcode(codes[0].rawValue);
+          }}
+        />
       </Box>
 
       <FormControl
@@ -113,11 +104,11 @@ const FoodFact = () => {
           <List>
             {tab === "allergens" &&
               product?.allergens_tags.map((allergen: string) => (
-                <ListItem>{allergen.substring(3)}</ListItem>
+                <ListItem key={allergen}>{allergen.substring(3)}</ListItem>
               ))}
             {tab === "ingredients" &&
               product?.ingredients_tags.map((ingredient: string) => (
-                <ListItem>{ingredient.substring(3)}</ListItem>
+                <ListItem key={ingredient}>{ingredient.substring(3)}</ListItem>
               ))}
           </List>
         </DialogContent>
