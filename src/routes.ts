@@ -4,4 +4,5 @@ export default [
   index("routes/home.tsx"),
   route("/fashion", "routes/fashion.tsx"),
   route("/gmail-footprint", "routes/gmailFootprint.tsx"),
+  route("/food-fact", "routes/foodFact.tsx"),
 ] satisfies RouteConfig;
