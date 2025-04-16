@@ -30,7 +30,7 @@ const FoodFact = () => {
     const fetchProduct = async () => {
       try {
         const res = await fetch(
-          `https://world.openfoodfacts.org/api/v3/product/${barcode}.json`
+          `https://world.openfoodfacts.org/api/v3/product/${activeBarcode}.json`
         );
         const data = await res.json();
         setProduct(data.product);
@@ -54,11 +54,11 @@ const FoodFact = () => {
           onCapture={(codes: any[]) => {
             if (!activeBarcode) {
               console.log(codes);
-              alert(codes[0].rawValue);
+            //   alert(codes[0].rawValue);
               setActiveBarcode(codes[0].rawValue);
             }
           }}
-          //   paused={!!activeBarcode}
+          paused={!!activeBarcode}
         />
       </Box>
 
