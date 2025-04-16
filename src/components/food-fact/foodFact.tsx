@@ -112,12 +112,12 @@ const FoodFact = () => {
           </Tabs>
           <List>
             {tab === "allergens" &&
-              product?.allergens_imported
-                .split(",")
-                .map((allergen: string) => <ListItem> {allergen}</ListItem>)}
+              product?.allergens_tags.map((allergen: string) => (
+                <ListItem>{allergen.substring(3)}</ListItem>
+              ))}
             {tab === "ingredients" &&
-              product?.ingredients.map((ingredient: any) => (
-                <ListItem> {ingredient.text}</ListItem>
+              product?.ingredients_tags.map((ingredient: string) => (
+                <ListItem>{ingredient.substring(3)}</ListItem>
               ))}
           </List>
         </DialogContent>
