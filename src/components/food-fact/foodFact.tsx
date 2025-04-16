@@ -56,7 +56,7 @@ const FoodFact = () => {
             alert(codes[0].rawValue);
             setActiveBarcode(codes[0].rawValue);
           }}
-          paused={!!activeBarcode}
+        //   paused={!!activeBarcode}
         />
       </Box>
 
