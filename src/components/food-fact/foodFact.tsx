@@ -18,7 +18,11 @@ import {
   Tabs,
   useTheme,
 } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+
+/// TODOs:
+///  - normalize `e-XXX` if a name is available in the taxinomy
+///  - allow selection of risky ingredients and change result color for better UX
 
 const FoodFact = () => {
   const theme = useTheme();
@@ -46,17 +50,22 @@ const FoodFact = () => {
     }
   }, [activeBarcode]);
 
+  const onCapture = useCallback(
+    (codes: any[]) => {
+      console.log(codes);
+      alert(codes[0].rawValue);
+      setActiveBarcode(codes[0].rawValue);
+    },
+    [setActiveBarcode]
+  );
+
   return (
     <>
       <Box sx={{ height: "100vh" }}>
         {!activeBarcode && (
           <BarcodeScanner
             options={{ formats: ["ean_13"], delay: 500 }}
-            onCapture={(codes: any[]) => {
-              console.log(codes);
-              alert(codes[0].rawValue);
-              setActiveBarcode(codes[0].rawValue);
-            }}
+            onCapture={onCapture}
             paused={!!activeBarcode}
           />
         )}
