@@ -39,7 +39,7 @@ const FoodFact = () => {
       }
     };
 
-    if (activeBarcode) {
+    if (activeBarcode && !product) {
       fetchProduct();
     } else {
       setProduct(null);
@@ -52,11 +52,13 @@ const FoodFact = () => {
         <BarcodeScanner
           options={{ formats: ["ean_13"], delay: 500 }}
           onCapture={(codes: any[]) => {
-            console.log(codes);
-            alert(codes[0].rawValue);
-            setActiveBarcode(codes[0].rawValue);
+            if (!activeBarcode) {
+              console.log(codes);
+              alert(codes[0].rawValue);
+              setActiveBarcode(codes[0].rawValue);
+            }
           }}
-        //   paused={!!activeBarcode}
+          //   paused={!!activeBarcode}
         />
       </Box>
 
