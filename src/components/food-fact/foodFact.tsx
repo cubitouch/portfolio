@@ -49,17 +49,17 @@ const FoodFact = () => {
   return (
     <>
       <Box sx={{ height: "100vh" }}>
-        <BarcodeScanner
-          options={{ formats: ["ean_13"], delay: 500 }}
-          onCapture={(codes: any[]) => {
-            if (!activeBarcode) {
+        {!activeBarcode && (
+          <BarcodeScanner
+            options={{ formats: ["ean_13"], delay: 500 }}
+            onCapture={(codes: any[]) => {
               console.log(codes);
-            //   alert(codes[0].rawValue);
+              alert(codes[0].rawValue);
               setActiveBarcode(codes[0].rawValue);
-            }
-          }}
-        //   paused={!!activeBarcode}
-        />
+            }}
+            paused={!!activeBarcode}
+          />
+        )}
       </Box>
 
       <FormControl
