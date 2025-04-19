@@ -13,7 +13,7 @@ const FoodFact = () => {
 
   return (
     <>
-      <Box sx={{ height: "100vh" }}>
+      <Box sx={{ height: "100dvh" }}>
         <ProductScanner
           barcode={activeBarcode}
           onChange={(value) => setActiveBarcode(value)}
