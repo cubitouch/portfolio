@@ -1,42 +1,58 @@
-import CropFreeIcon from "@mui/icons-material/CropFree";
+import ClearIcon from "@mui/icons-material/Clear";
+import SearchIcon from "@mui/icons-material/Search";
 
-import { Box, Button, FormControl, Input, InputLabel } from "@mui/material";
+import {
+  IconButton,
+  InputAdornment,
+  Paper,
+  TextField,
+  useTheme,
+} from "@mui/material";
 import { useState } from "react";
 
 interface Props {
   onChange: (value: string) => void;
 }
 const ProductBarcodeInput = ({ onChange }: Props) => {
+  const theme = useTheme();
   const [barcode, setBarcode] = useState("");
   return (
     <>
-      <FormControl
-        variant="standard"
-        fullWidth
+      <Paper
         sx={{
+          display: "flex",
+          padding: theme.spacing(1),
+          width: `calc(100% - ${theme.spacing(2)})`,
+
           position: "absolute",
           bottom: 0,
-          backgroundColor: "white",
-          display: "flex",
-          flexDirection: "row",
+          gap: theme.spacing(1),
         }}
       >
-        <Box sx={{ flex: 1 }}>
-          <InputLabel htmlFor="input-with-icon-adornment">Code bar</InputLabel>
-          <Input
-            id="input-with-icon-adornment"
-            sx={{ width: "100%" }}
-            onChange={(value) => setBarcode(value.currentTarget.value)}
-          />
-        </Box>
-        <Button
-          startIcon={<CropFreeIcon />}
-          sx={{ flex: 0 }}
-          onClick={() => onChange(barcode)}
-        >
-          Go
-        </Button>
-      </FormControl>
+        <TextField
+          id="barcode"
+          label="Code bar"
+          variant="outlined"
+          color="primary"
+          value={barcode}
+          onChange={(value) => setBarcode(value.currentTarget.value)}
+          sx={{
+            flex: 1,
+          }}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton color="inherit" onClick={() => setBarcode("")}>
+                  <ClearIcon />
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+        />
+        <IconButton color="primary" onClick={() => onChange(barcode)}>
+          <SearchIcon />
+        </IconButton>
+      </Paper>
     </>
   );
 };
