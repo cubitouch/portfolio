@@ -1,10 +1,9 @@
 import CropFreeIcon from "@mui/icons-material/CropFree";
-import { BarcodeScanner } from "react-barcode-scanner";
-import "react-barcode-scanner/polyfill";
 
 import { Box, Button, FormControl, Input, InputLabel } from "@mui/material";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import ProductDetail from "./productDetail";
+import ProductScanner from "./productScanner";
 
 /// TODOs:
 ///  - normalize `e-XXX` if a name is available in the taxinomy
@@ -14,25 +13,13 @@ const FoodFact = () => {
   const [barcode, setBarcode] = useState("");
   const [activeBarcode, setActiveBarcode] = useState("");
 
-  const onCapture = useCallback(
-    (codes: any[]) => {
-      console.log(codes);
-      //   alert(codes[0].rawValue);
-      setActiveBarcode(codes[0].rawValue);
-    },
-    [setActiveBarcode]
-  );
-
   return (
     <>
       <Box sx={{ height: "100vh" }}>
-        {!activeBarcode && (
-          <BarcodeScanner
-            options={{ formats: ["ean_13"], delay: 500 }}
-            onCapture={onCapture}
-            paused={!!activeBarcode}
-          />
-        )}
+        <ProductScanner
+          barcode={activeBarcode}
+          onChange={(value) => setActiveBarcode(value)}
+        />
       </Box>
 
       <FormControl
