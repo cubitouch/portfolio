@@ -42,19 +42,25 @@ const ProductDetail = ({ barcode, onClose }: Props) => {
   }, [barcode]);
   return (
     <Dialog open={!!product} onClose={onClose} fullScreen>
-      <DialogTitle>
+      <DialogTitle noWrap>
         {product?.brands} - {product?.generic_name_fr}
       </DialogTitle>
-      <DialogContent>
-        <Tabs
-          sx={{ background: theme.palette.primary.main }}
-          value={tab}
-          onChange={(_, value) => setTab(value)}
-        >
-          <Tab label="Allergènes" value="allergens" />
-          <Tab label="Ingrédients" value="ingredients" />
-        </Tabs>
-        <List>
+      <Tabs
+        sx={{ background: theme.palette.primary.main, height: 48 }}
+        value={tab}
+        onChange={(_, value) => setTab(value)}
+      >
+        <Tab
+          label={`Allergènes (${product?.allergens_tags.length})`}
+          value="allergens"
+        />
+        <Tab
+          label={`Ingrédients (${product?.ingredients_tags.length})`}
+          value="ingredients"
+        />
+      </Tabs>
+      <DialogContent dividers sx={{ padding: 0 }}>
+        <List disablePadding>
           {tab === "allergens" &&
             product?.allergens_tags.map((allergen: string) => (
               <ListItem key={allergen}>{allergen.substring(3)}</ListItem>
@@ -66,7 +72,7 @@ const ProductDetail = ({ barcode, onClose }: Props) => {
         </List>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>Fermer</Button>
+        <Button onClick={onClose}>Retour</Button>
       </DialogActions>
     </Dialog>
   );
