@@ -11,6 +11,7 @@ import {
   useTheme,
 } from "@mui/material";
 import { useEffect, useState } from "react";
+import useStore from "./useStore";
 
 interface Props {
   barcode?: string;
@@ -18,6 +19,8 @@ interface Props {
 }
 const ProductDetail = ({ barcode, onClose }: Props) => {
   const theme = useTheme();
+
+  const [_, translate] = useStore();
   const [product, setProduct] = useState<any>(null);
   const [tab, setTab] = useState("allergens");
 
@@ -63,11 +66,15 @@ const ProductDetail = ({ barcode, onClose }: Props) => {
         <List disablePadding>
           {tab === "allergens" &&
             product?.allergens_tags.map((allergen: string) => (
-              <ListItem key={allergen}>{allergen.substring(3)}</ListItem>
+              <ListItem key={allergen}>
+                {translate("allergens", allergen)}
+              </ListItem>
             ))}
           {tab === "ingredients" &&
             product?.ingredients_tags.map((ingredient: string) => (
-              <ListItem key={ingredient}>{ingredient.substring(3)}</ListItem>
+              <ListItem key={ingredient}>
+                {translate("ingredients", ingredient)}
+              </ListItem>
             ))}
         </List>
       </DialogContent>
